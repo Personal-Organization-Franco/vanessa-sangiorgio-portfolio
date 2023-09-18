@@ -33,4 +33,4 @@ jobs:
           aws-region: eu-west-2
       - name: Copy files to the website with the AWS CLI
         run: |
-          aws s3 sync out s3://vanessa-sangiorgio-portfolio
+          aws s3 sync public s3://vanessa-sangiorgio-portfolio
