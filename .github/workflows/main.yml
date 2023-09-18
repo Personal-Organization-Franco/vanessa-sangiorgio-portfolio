@@ -1,0 +1,30 @@
+name: Build and deploy to S3
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build application with pnpm
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - run: npm install -g pnpm
+      - run: pnpm i --frozen-lockfile
+      - run: pnpm build
+      - name: Configure AWS credentials from Github account
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::781928496898:role/aws-github-prod
+          aws-region: eu-west-2
+      - name: Copy files to the website with the AWS CLI
+        run: |
+          aws s3 sync out s3://vanessa-sangiorgio-portfolio
