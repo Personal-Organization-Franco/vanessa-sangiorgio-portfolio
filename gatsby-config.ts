@@ -1,4 +1,6 @@
-require("dotenv").config({
+import dotenv from "dotenv";
+
+dotenv.config({
   path: `.env.${process.env.NODE_ENV ?? "development"}`,
 });
 
@@ -32,7 +34,6 @@ const config: GatsbyConfig = {
         icon: "src/images/icon.png",
       },
     },
-    "gatsby-plugin-mdx",
     {
       resolve: "gatsby-source-filesystem",
       options: {
