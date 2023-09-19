@@ -13,7 +13,9 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
@@ -35,14 +37,18 @@
   "devDependencies": {
     "@gatsbyjs/reach-router": "^2.0.1",
     "@gatsbyjs/webpack-hot-middleware": "^2.25.3",
+    "@graphql-eslint/eslint-plugin": "^3.20.1",
     "@types/node": "^20.3.3",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
     "anser": "^2.1.1",
     "css.escape": "^1.5.1",
     "deepmerge": "^4.3.1",
     "dotenv": "^16.3.1",
     "error-stack-parser": "^2.1.4",
+    "eslint": "^8.49.0",
     "eslint-plugin-flowtype": "^8.0.3",
     "gatsby-core-utils": "^4.12.0",
     "gatsby-link": "^5.12.0",
