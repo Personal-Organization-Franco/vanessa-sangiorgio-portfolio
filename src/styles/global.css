@@ -8,4 +8,10 @@
 		font-family: "Helvetica Neue", "Helvetica", "Open Sans", system-ui,
 			sans-serif;
 	}
+
+	:root {
+		--color-grey-1: #1b1b1b;
+		--color-grey-2: #6b6b6b;
+		--color-grey-3: #b3b3b3;
+	}
 }

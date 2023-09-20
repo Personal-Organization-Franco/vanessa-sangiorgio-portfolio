@@ -7,6 +7,7 @@ const IndexPage = () => {
 	return (
 		<MainLayout>
 			<h1>This is the main page!</h1>
+			<h2>All the content of the pages will go here and below!</h2>
 		</MainLayout>
 	);
 };
