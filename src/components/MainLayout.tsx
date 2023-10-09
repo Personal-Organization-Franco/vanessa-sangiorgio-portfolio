@@ -2,12 +2,14 @@ import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 
+const currentYear = new Date().getFullYear();
+
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="px-12 pt-4 flex flex-col min-h-screen">
       <Header />
       <section className="grow">{children}</section>
-      <Footer>Something in the footer?</Footer>
+      <Footer>&copy; Vanessa Sangiorgio {currentYear} - London</Footer>
     </main>
   );
 };
