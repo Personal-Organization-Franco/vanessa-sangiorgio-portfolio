@@ -2,25 +2,25 @@ import React from "react";
 import { useSiteMetadata } from "hooks/useSiteMetaData";
 
 type SEOProps = {
-	title?: string;
-	description?: string;
-	children?: React.ReactNode;
+  title?: string;
+  description?: string;
+  children?: React.ReactNode;
 };
 
 export const SEO = ({ title, description, children }: SEOProps) => {
-	const { title: defaultTitle, description: defaultDescription } =
-		useSiteMetadata();
+  const { title: defaultTitle, description: defaultDescription = "" } =
+    useSiteMetadata();
 
-	const seo = {
-		title: title ? `${defaultTitle} - ${title}` : defaultTitle,
-		description: description || defaultDescription,
-	};
+  const seo = {
+    title: title ? `${defaultTitle} - ${title}` : defaultTitle,
+    description: description || defaultDescription,
+  };
 
-	return (
-		<>
-			<title>{seo.title}</title>
-			<meta name="description" content={seo.description} />
-			{children}
-		</>
-	);
+  return (
+    <>
+      <title>{seo.title}</title>
+      <meta name="description" content={seo.description} />
+      {children}
+    </>
+  );
 };
