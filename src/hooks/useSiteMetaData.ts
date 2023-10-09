@@ -1,27 +1,21 @@
 import { graphql, useStaticQuery } from "gatsby";
 
-type SiteMetaData = {
-	site: {
-		siteMetadata: {
-			title: string;
-			description: string;
-			siteUrl: string;
-		};
-	};
-};
-
 export const useSiteMetadata = () => {
-	const data = useStaticQuery<SiteMetaData>(graphql`
-		query {
-			site {
-				siteMetadata {
-					title
-					description
-					siteUrl
-				}
-			}
-		}
-	`);
+  const data = useStaticQuery<Queries.SiteMetadataQueryQuery>(graphql`
+    query SiteMetadataQuery {
+      site {
+        siteMetadata {
+          title
+          description
+          siteUrl
+        }
+      }
+    }
+  `);
 
-	return data.site.siteMetadata;
+  return {
+    title: data.site?.siteMetadata?.title ?? "Vanessa Sangiorgio",
+    description: data.site?.siteMetadata?.description ?? "",
+    siteUrl: data.site?.siteMetadata?.siteUrl ?? "",
+  };
 };
