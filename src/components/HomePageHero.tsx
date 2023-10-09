@@ -4,7 +4,7 @@ const HomePageHero = () => {
   const { heroLinks, heroText } = useHeaderHero();
   return (
     <>
-      <h1 className="w-4/5 py-20 text-grey-1 text-[54px] leading-tight font-normal">
+      <h1 className="w-[60rem] py-20 text-grey-1 text-[54px] leading-tight font-normal">
         {heroText}
       </h1>
       <nav>
