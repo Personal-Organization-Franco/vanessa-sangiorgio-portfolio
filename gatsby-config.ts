@@ -8,10 +8,10 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `Vanessa Sangiorgio Product Designer Portfolio`,
+    title: "Vanessa Sangiorgio Product Designer Portfolio",
     description:
       "Vanessa Sangiorgio is a passionate and results-driven product designer with a deep understanding of user-centred design principles, based in London.",
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: "https://www.vanessasangiorgio.com",
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
