@@ -1,15 +1,14 @@
-import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
-import { SEO } from "components/SEO";
+import SEO from "components/SEO";
 import MainLayout from "components/MainLayout";
+import HomePageHero from "components/HomePageHero";
 
 const IndexPage = () => {
-	return (
-		<MainLayout>
-			<h1>This is the main page!</h1>
-			<h2>All the content of the pages will go here and below!</h2>
-		</MainLayout>
-	);
+  return (
+    <MainLayout>
+      <HomePageHero />
+    </MainLayout>
+  );
 };
 
 export default IndexPage;

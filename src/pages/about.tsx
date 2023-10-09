@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { HeadFC } from "gatsby";
-import { SEO } from "components/SEO";
+import SEO from "components/SEO";
 import MainLayout from "components/MainLayout";
 
 const AboutPage = () => {

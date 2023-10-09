@@ -1,4 +1,3 @@
-import React from "react";
 import { useSiteMetadata } from "hooks/useSiteMetaData";
 
 type SEOProps = {
@@ -7,7 +6,7 @@ type SEOProps = {
   children?: React.ReactNode;
 };
 
-export const SEO = ({ title, description, children }: SEOProps) => {
+const SEO = ({ title, description, children }: SEOProps) => {
   const { title: defaultTitle, description: defaultDescription = "" } =
     useSiteMetadata();
 
@@ -24,3 +23,5 @@ export const SEO = ({ title, description, children }: SEOProps) => {
     </>
   );
 };
+
+export default SEO;
