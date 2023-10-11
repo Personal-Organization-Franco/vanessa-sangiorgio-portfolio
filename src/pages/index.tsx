@@ -1,12 +1,14 @@
-import type { HeadFC, PageProps } from "gatsby";
+import type { HeadFC } from "gatsby";
 import SEO from "components/SEO";
 import MainLayout from "components/MainLayout";
 import HomePageHero from "components/HomePageHero";
+import HomePageSections from "components/HomePageSections";
 
 const IndexPage = () => {
   return (
     <MainLayout>
       <HomePageHero />
+      <HomePageSections />
     </MainLayout>
   );
 };
