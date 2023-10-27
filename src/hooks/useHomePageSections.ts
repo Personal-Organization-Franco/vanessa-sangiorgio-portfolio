@@ -1,8 +1,8 @@
 import { graphql, useStaticQuery } from "gatsby";
 
-export const useHeaderSections = () => {
-  const data = useStaticQuery<Queries.AllHeaderSectionsQuery>(graphql`
-    query AllHeaderSections {
+export const useHomePageSections = () => {
+  const data = useStaticQuery<Queries.AllHomePageSectionsQuery>(graphql`
+    query AllHomePageSections {
       allContentfulHomePageSections(sort: { sortOrder: ASC }) {
         nodes {
           projectDescription {
@@ -19,6 +19,9 @@ export const useHeaderSections = () => {
           projectRole
           projectTitle
           sectionName
+          projectPath: gatsbyPath(
+            filePath: "/case-studies/{ContentfulHomePageSections.sectionName}"
+          )
         }
       }
     }
