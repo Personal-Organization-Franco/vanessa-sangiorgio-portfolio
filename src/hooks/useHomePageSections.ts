@@ -15,7 +15,6 @@ export const useHomePageSections = () => {
               placeholder: BLURRED
               formats: [AUTO, WEBP, AVIF]
             )
-            gatsbyImage(width: 996)
           }
           projectRole
           projectTitle

@@ -1,7 +1,8 @@
-import { PageProps, graphql } from "gatsby";
+import { HeadFC, PageProps, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 import MainLayout from "components/MainLayout";
+import SEO from "components/SEO";
 
 const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
   const { contentfulCaseStudy } = data;
@@ -254,3 +255,5 @@ export const query = graphql`
     }
   }
 `;
+
+export const Head: HeadFC = () => <SEO title="Case study Page" />;
