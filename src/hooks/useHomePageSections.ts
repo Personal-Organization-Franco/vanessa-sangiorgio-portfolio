@@ -1,8 +1,9 @@
 import { graphql, useStaticQuery } from "gatsby";
+import slugify from "@sindresorhus/slugify";
 
-export const useHeaderSections = () => {
-  const data = useStaticQuery<Queries.AllHeaderSectionsQuery>(graphql`
-    query AllHeaderSections {
+export const useHomePageSections = () => {
+  const data = useStaticQuery<Queries.AllHomePageSectionsQuery>(graphql`
+    query AllHomePageSections {
       allContentfulHomePageSections(sort: { sortOrder: ASC }) {
         nodes {
           projectDescription {
@@ -24,5 +25,8 @@ export const useHeaderSections = () => {
     }
   `);
 
-  return data.allContentfulHomePageSections.nodes;
+  return data.allContentfulHomePageSections.nodes.map(node => ({
+    ...node,
+    projectPath: `/case-studies/${slugify(node?.sectionName ?? "")}`,
+  }));
 };

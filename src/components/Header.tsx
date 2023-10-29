@@ -6,7 +6,7 @@ const Header = () => {
   const { logoText, navbar } = useHeaderData();
 
   return (
-    <header className="flex justify-between">
+    <header className="flex justify-between pb-4">
       <div className="text-[32px] font-medium text-grey-1">{logoText}</div>
       <nav className="flex gap-8 items-center">
         {navbar.map(item => {
