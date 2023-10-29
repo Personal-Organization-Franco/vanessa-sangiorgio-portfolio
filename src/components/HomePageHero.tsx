@@ -4,9 +4,11 @@ const HomePageHero = () => {
   const { heroLinks, heroText } = useHeaderHero();
   return (
     <>
-      <h1 className="w-[60rem] py-20 text-grey-1 text-[54px] leading-tight font-normal">
-        {heroText}
-      </h1>
+      <div className="max-w-4xl">
+        <h1 className="py-20 text-grey-1 text-[54px] leading-tight font-normal">
+          {heroText}
+        </h1>
+      </div>
       <nav className="mb-32">
         {heroLinks.map(link => (
           <a

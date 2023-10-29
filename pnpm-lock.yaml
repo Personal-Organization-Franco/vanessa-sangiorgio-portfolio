@@ -4,6 +4,9 @@ dependencies:
   "@mdx-js/react":
     specifier: ^2.3.0
     version: 2.3.0(react@18.2.0)
+  "@sindresorhus/slugify":
+    specifier: ^2.2.1
+    version: 2.2.1
   autoprefixer:
     specifier: ^10.4.15
     version: 10.4.15(postcss@8.4.29)
@@ -4060,6 +4063,17 @@ packages:
       "@sindresorhus/transliterate": 0.1.2
       escape-string-regexp: 4.0.0
 
+  /@sindresorhus/slugify@2.2.1:
+    resolution:
+      {
+        integrity: sha512-MkngSCRZ8JdSOCHRaYd+D01XhvU3Hjy6MGl06zhOk614hp9EOAp5gIkBeQg7wtmxpitU6eAL4kdiRMcJa2dlrw==,
+      }
+    engines: { node: ">=12" }
+    dependencies:
+      "@sindresorhus/transliterate": 1.6.0
+      escape-string-regexp: 5.0.0
+    dev: false
+
   /@sindresorhus/transliterate@0.1.2:
     resolution:
       {
@@ -4069,6 +4083,16 @@ packages:
     dependencies:
       escape-string-regexp: 2.0.0
       lodash.deburr: 4.1.0
+
+  /@sindresorhus/transliterate@1.6.0:
+    resolution:
+      {
+        integrity: sha512-doH1gimEu3A46VX6aVxpHTeHrytJAG6HgdxntYnCFiIFHEM/ZGpG8KiZGBChchjQmG0XFIBL552kBTjVcMZXwQ==,
+      }
+    engines: { node: ">=12" }
+    dependencies:
+      escape-string-regexp: 5.0.0
+    dev: false
 
   /@sinonjs/commons@3.0.0:
     resolution:
@@ -8585,6 +8609,14 @@ packages:
         integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==,
       }
     engines: { node: ">=10" }
+
+  /escape-string-regexp@5.0.0:
+    resolution:
+      {
+        integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==,
+      }
+    engines: { node: ">=12" }
+    dev: false
 
   /escodegen@2.1.0:
     resolution:

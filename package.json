@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
+    "@sindresorhus/slugify": "^2.2.1",
     "autoprefixer": "^10.4.15",
     "gatsby": "^5.12.4",
     "gatsby-plugin-image": "^3.12.0",

@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby";
+import slugify from "@sindresorhus/slugify";
 
 export const useHomePageSections = () => {
   const data = useStaticQuery<Queries.AllHomePageSectionsQuery>(graphql`
@@ -19,13 +20,13 @@ export const useHomePageSections = () => {
           projectRole
           projectTitle
           sectionName
-          projectPath: gatsbyPath(
-            filePath: "/case-studies/{ContentfulHomePageSections.sectionName}"
-          )
         }
       }
     }
   `);
 
-  return data.allContentfulHomePageSections.nodes;
+  return data.allContentfulHomePageSections.nodes.map(node => ({
+    ...node,
+    projectPath: `/case-studies/${slugify(node?.sectionName ?? "")}`,
+  }));
 };
