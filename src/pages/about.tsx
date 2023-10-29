@@ -1,12 +1,49 @@
-import * as React from "react";
-import type { HeadFC } from "gatsby";
+import { graphql, PageProps, type HeadFC } from "gatsby";
 import SEO from "components/SEO";
 import MainLayout from "components/MainLayout";
+import { useAboutPage } from "hooks/useAboutPage";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-const AboutPage = () => {
+const AboutPage = ({
+  data: pageData,
+}: PageProps<Queries.AboutPageLinksQuery>) => {
+  const data = useAboutPage();
+  const image = getImage(data?.profilePic ?? null);
+
   return (
     <MainLayout>
-      <h1>This is the About page!</h1>
+      <div className="py-14 flex justify-between items-start">
+        <div className="flex flex-col mr-auto max-w-[50%]">
+          <h1 className="text-4xl font-medium mb-20 text-grey-1">
+            {data?.title}
+          </h1>
+          <p className="text-grey-1 text-xl">
+            {data?.description?.description}
+          </p>
+        </div>
+        <div className="max-w-[50%]">
+          {image && (
+            <div className="max-w-[50%] ml-auto">
+              <GatsbyImage
+                image={image}
+                alt={data?.title ?? "Profile Picture"}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+      <nav className="mb-32">
+        {pageData?.contentfulHomePage?.heroLinks?.map(link => (
+          <a
+            className="text-xl font-normal text-grey-2 pr-[4.375rem]"
+            href={link?.href ?? ""}
+            target="_blank"
+            key={link?.name}
+          >
+            {link?.name ?? ""}
+          </a>
+        ))}
+      </nav>
     </MainLayout>
   );
 };
@@ -14,3 +51,14 @@ const AboutPage = () => {
 export default AboutPage;
 
 export const Head: HeadFC = () => <SEO title="About Page" />;
+
+export const query = graphql`
+  query AboutPageLinks {
+    contentfulHomePage {
+      heroLinks {
+        name
+        href
+      }
+    }
+  }
+`;

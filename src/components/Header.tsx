@@ -13,7 +13,7 @@ const Header = () => {
           return (
             <Link
               to={item?.to ?? "/"}
-              activeClassName="font-bold active:text-grey-1 visited:text-grey-1"
+              activeClassName="active:font-bold visited:font-bold active:text-grey-1 visited:text-grey-1"
               className="font-normal text-grey-2 text-xl"
               key={item?.name}
             >
