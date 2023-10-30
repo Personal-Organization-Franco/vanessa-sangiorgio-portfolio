@@ -12,18 +12,18 @@ const AboutPage = ({
 
   return (
     <MainLayout>
-      <div className="py-14 flex justify-between items-start">
-        <div className="flex flex-col mr-auto max-w-[50%]">
+      <div className="py-14 flex flex-col sm:flex-row justify-between items-start">
+        <div className="flex flex-col mr-auto sm:max-w-[50%]">
           <h1 className="text-xl sm:text-4xl font-medium mb-20 text-grey-1">
             {data?.title}
           </h1>
-          <p className="text-grey-1 text-xl">
+          <p className="text-grey-1 text-sm sm:text-xl">
             {data?.description?.description}
           </p>
         </div>
-        <div className="max-w-[50%]">
+        <div className="mt-16 sm:mt-0 sm:max-w-[50%]">
           {image && (
-            <div className="max-w-[50%] ml-auto">
+            <div className="sm:max-w-[50%] sm:ml-auto">
               <GatsbyImage
                 image={image}
                 alt={data?.title ?? "Profile Picture"}
