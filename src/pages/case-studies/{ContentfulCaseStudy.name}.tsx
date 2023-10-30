@@ -18,7 +18,7 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
 
   return (
     <MainLayout>
-      <div className="mr-[-3rem] ml-[-3rem]">
+      <div className="mx-[-1rem] sm:mx-[-3rem]">
         {heroImage && (
           <GatsbyImage
             image={heroImage}
