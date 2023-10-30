@@ -12,18 +12,22 @@ const NotFoundPage = () => {
     <MainLayout>
       <div className="py-14 flex justify-between items-start">
         <div className="flex flex-col mr-auto max-w-[50%]">
-          <p className="text-grey-1 text-xl mb-5">{data?.errorCode}</p>
+          <p className="text-grey-1 text-sm sm:text-xl mb-5">
+            {data?.errorCode}
+          </p>
           <h1 className="text-4xl font-medium text-grey-1">{data?.oopsText}</h1>
           <h2 className="text-4xl font-medium text-grey-1 mb-8">
             {data?.cantFindPage}
           </h2>
-          <p className="text-grey-1 text-xl mb-3">{data?.helpfulText}</p>
+          <p className="text-grey-1 text-sm sm:text-xl mb-3">
+            {data?.helpfulText}
+          </p>
           <nav className="flex flex-col">
             {data?.navbarLinks?.map(link => {
               return (
                 <Link
                   to={link?.to ?? "/"}
-                  className="font-normal text-grey-2 text-xl mb-5"
+                  className="font-normal text-grey-2 text-sm sm:text-xl mb-5"
                   key={link?.name}
                 >
                   {link?.name ?? ""}
@@ -32,7 +36,7 @@ const NotFoundPage = () => {
             })}
             {data?.externalLinks?.map(link => (
               <a
-                className="text-xl font-normal text-grey-2 mb-5"
+                className="text-sm sm:text-xl font-normal text-grey-2 mb-5"
                 href={link?.href ?? ""}
                 target="_blank"
                 key={link?.name}
