@@ -26,24 +26,24 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
           />
         )}
       </div>
-      <h1 className="text-grey-1 font-normal text-center text-[54px] pt-10 pb-10">
+      <h1 className="text-grey-1 font-normal text-center text-xl sm:text-[54px] py-4 sm:py-10">
         {contentfulCaseStudy?.heroTitle}
       </h1>
       {/** Overview */}
       <section className="flex flex-col justify-center items-center">
-        <div className="flex flex-col justify-center items-start max-w-2xl pt-32 pb-32">
-          <p className="text-xl font-normal text-grey-3">
+        <div className="flex flex-col justify-center items-start max-w-2xl py-8 sm:py-32">
+          <p className="text-sm sm:text-xl font-normal text-grey-3">
             {overview?.projectRole}
           </p>
           <h2 className="text-4xl font-medium text-grey-1 my-6">
             {overview?.overviewTitle}
           </h2>
           {overview?.boldText && (
-            <p className="text-grey-1 text-xl mb-5 font-bold">
+            <p className="text-grey-1 text-sm sm:text-xl mb-5 font-bold">
               {overview?.boldText}
             </p>
           )}
-          <p className="text-grey-1 font-normal text-xl">
+          <p className="text-grey-1 font-normal text-sm sm:text-xl">
             {overview?.roleDescription?.roleDescription}
           </p>
         </div>
@@ -59,7 +59,7 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
             </div>
           );
         })}
-        <p className="text-center text-grey-2 font-normal text-xl mt-2.5">
+        <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5">
           {overview?.overviewPicsCaption}
         </p>
       </section>
@@ -78,11 +78,11 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
 
         return (
           <section className="flex flex-col justify-center items-center">
-            <div className="flex flex-col justify-center items-start max-w-2xl pt-32 pb-32">
+            <div className="flex flex-col justify-center items-start max-w-2xl py-8 sm:py-32">
               <h2 className="text-4xl font-medium text-grey-1 my-6">
                 {section?.sectionTitle}
               </h2>
-              <p className="text-grey-1 font-normal text-xl">
+              <p className="text-grey-1 font-normal text-sm sm:text-xl">
                 {(section?.sectionDescription?.sectionDescription ?? "")
                   .split("\n")
                   .map((item, i) => {
@@ -97,7 +97,7 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
             </div>
             {image1 && (
               <>
-                <div className="pt-14">
+                <div className="pt:4 sm:pt-14">
                   {image1 && (
                     <GatsbyImage
                       image={image1}
@@ -105,14 +105,14 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
                     />
                   )}
                 </div>
-                <p className="text-center text-grey-2 font-normal text-xl mt-2.5 pb-14">
+                <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
                   {image1Caption}
                 </p>
               </>
             )}
             {image2 && (
               <>
-                <div className="pt-14">
+                <div className="pt:4 sm:pt-14">
                   {image2 && (
                     <GatsbyImage
                       image={image2}
@@ -120,14 +120,14 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
                     />
                   )}
                 </div>
-                <p className="text-center text-grey-2 font-normal text-xl mt-2.5 pb-14">
+                <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
                   {image2Caption}
                 </p>
               </>
             )}
             {image3 && (
               <>
-                <div className="pt-14">
+                <div className="pt:4 sm:pt-14">
                   {image3 && (
                     <GatsbyImage
                       image={image3}
@@ -135,14 +135,14 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
                     />
                   )}
                 </div>
-                <p className="text-center text-grey-2 font-normal text-xl mt-2.5 pb-14">
+                <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
                   {image3Caption}
                 </p>
               </>
             )}
             {image4 && (
               <>
-                <div className="pt-14">
+                <div className="pt:4 sm:pt-14">
                   {image4 && (
                     <GatsbyImage
                       image={image4}
@@ -150,14 +150,14 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
                     />
                   )}
                 </div>
-                <p className="text-center text-grey-2 font-normal text-xl mt-2.5 pb-14">
+                <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
                   {image4Caption}
                 </p>
               </>
             )}
             {image5 && (
               <>
-                <div className="pt-14">
+                <div className="pt:4 sm:pt-14">
                   {image5 && (
                     <GatsbyImage
                       image={image5}
@@ -165,7 +165,7 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
                     />
                   )}
                 </div>
-                <p className="text-center text-grey-2 font-normal text-xl mt-2.5 pb-14">
+                <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
                   {image5Caption}
                 </p>
               </>

@@ -14,7 +14,7 @@ const AboutPage = ({
     <MainLayout>
       <div className="py-14 flex justify-between items-start">
         <div className="flex flex-col mr-auto max-w-[50%]">
-          <h1 className="text-4xl font-medium mb-20 text-grey-1">
+          <h1 className="text-xl sm:text-4xl font-medium mb-20 text-grey-1">
             {data?.title}
           </h1>
           <p className="text-grey-1 text-xl">
@@ -32,10 +32,10 @@ const AboutPage = ({
           )}
         </div>
       </div>
-      <nav className="mb-32">
+      <nav className="mb-6 sm:mb-32 gap-16 flex flex-col sm:flex-row">
         {pageData?.contentfulHomePage?.heroLinks?.map(link => (
           <a
-            className="text-xl font-normal text-grey-2 pr-[4.375rem]"
+            className="text-sm sm:text-xl font-normal text-grey-2"
             href={link?.href ?? ""}
             target="_blank"
             key={link?.name}

@@ -22,7 +22,7 @@ const HomePageSections = () => {
         return (
           <section
             key={projectTitle}
-            className="grid grid-flow-col gap-x-9 cursor-pointer"
+            className="flex flex-col sm:grid sm:grid-flow-col gap-x-9 cursor-pointer"
             onClick={
               projectPath
                 ? () => {
@@ -38,9 +38,13 @@ const HomePageSections = () => {
                 className="row-span-3 col-span-2"
               />
             )}
-            <p className="text-xl font-normal text-grey-3">{projectRole}</p>
-            <h3 className="text-[54px] font-normal">{projectTitle}</h3>
-            <p className="text-xl font-normal text-grey-1 leading-8 max-w-[400px]">
+            <p className="text-sm sm:text-xl font-normal text-grey-3 py-8 sm:py-0">
+              {projectRole}
+            </p>
+            <h3 className="text-xl sm:text-[54px] font-normal">
+              {projectTitle}
+            </h3>
+            <p className="text-sm sm:text-xl font-normal text-grey-1 leading-8 sm:max-w-[400px]">
               {projectDescription?.projectDescription}
             </p>
           </section>
