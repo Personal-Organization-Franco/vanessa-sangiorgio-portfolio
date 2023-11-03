@@ -1,6 +1,8 @@
 import { navigate } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
+import ArrowRight from "assets/arrowRight.svg";
+
 import { useHomePageSections } from "hooks/useHomePageSections";
 
 const HomePageSections = () => {
@@ -45,7 +47,14 @@ const HomePageSections = () => {
               {projectTitle}
             </h3>
             <p className="text-sm sm:text-xl font-normal text-grey-1 leading-8 sm:max-w-[400px]">
-              {projectDescription?.projectDescription}
+              <span>{projectDescription?.projectDescription}</span>
+              <span
+                className="text-[#0166CC] flex items-center mt-8 text-xl"
+                onClick={() => navigate(projectPath)}
+              >
+                Read More
+                <ArrowRight className="pl-2 w-6" />
+              </span>
             </p>
           </section>
         );
