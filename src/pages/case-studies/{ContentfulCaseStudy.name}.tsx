@@ -26,7 +26,7 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
           />
         )}
       </div>
-      <h1 className="text-grey-1 font-normal text-center text-xl sm:text-[54px] py-4 sm:py-10">
+      <h1 className="text-grey-1 font-normal text-center text-xl sm:text-[54px] leading-tight py-4 sm:py-10">
         {contentfulCaseStudy?.heroTitle}
       </h1>
       {/** Overview */}
