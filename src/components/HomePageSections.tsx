@@ -41,7 +41,7 @@ const HomePageSections = () => {
             <p className="text-sm sm:text-xl font-normal text-grey-3 py-8 sm:py-0">
               {projectRole}
             </p>
-            <h3 className="text-xl sm:text-[54px] font-normal">
+            <h3 className="text-xl sm:text-[54px] leading-tight font-normal">
               {projectTitle}
             </h3>
             <p className="text-sm sm:text-xl font-normal text-grey-1 leading-8 sm:max-w-[400px]">
