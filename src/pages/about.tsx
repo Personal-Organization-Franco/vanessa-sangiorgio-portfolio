@@ -3,10 +3,12 @@ import SEO from "components/SEO";
 import MainLayout from "components/MainLayout";
 import { useAboutPage } from "hooks/useAboutPage";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import useCheckPasswordSet from "hooks/useCheckPasswordSet";
 
 const AboutPage = ({
   data: pageData,
 }: PageProps<Queries.AboutPageLinksQuery>) => {
+  useCheckPasswordSet();
   const data = useAboutPage();
   const image = getImage(data?.profilePic ?? null);
 

@@ -9,7 +9,7 @@ const useCheckPasswordSet = () => {
     if (passwordIsSet) {
       return;
     }
-    navigate("/");
+    navigate("/password");
   }, [passwordIsSet]);
 };
 
