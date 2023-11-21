@@ -3,8 +3,10 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 import MainLayout from "components/MainLayout";
 import SEO from "components/SEO";
+import useCheckPasswordSet from "hooks/useCheckPasswordSet";
 
 const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
+  useCheckPasswordSet();
   const { contentfulCaseStudy } = data;
 
   const heroImage = getImage(contentfulCaseStudy?.heroImage ?? null);
@@ -77,7 +79,10 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
         const image5Caption = section?.image5Caption;
 
         return (
-          <section className="flex flex-col justify-center items-center">
+          <section
+            className="flex flex-col justify-center items-center"
+            key={section?.sectionTitle}
+          >
             <div className="flex flex-col justify-center items-start max-w-2xl py-8 sm:py-32">
               <h2 className="text-4xl font-medium text-grey-1 my-6">
                 {section?.sectionTitle}
