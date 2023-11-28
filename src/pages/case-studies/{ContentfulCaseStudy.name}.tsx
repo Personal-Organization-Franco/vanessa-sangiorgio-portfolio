@@ -23,7 +23,7 @@ const SectionPage = ({
   const caseStudySection = contentfulCaseStudy?.caseStudySection;
 
   if (!passwordIsSet) {
-    if (params?.name === "near-u") {
+    if (params?.name === "near-u" && typeof window !== "undefined") {
       navigate("/password", {
         state: {
           from: location?.pathname,
