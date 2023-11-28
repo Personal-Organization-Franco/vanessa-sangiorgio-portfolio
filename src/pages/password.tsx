@@ -1,4 +1,4 @@
-import { HeadFC, navigate } from "gatsby";
+import { HeadFC, PageProps, navigate } from "gatsby";
 
 import MainLayout from "components/MainLayout";
 import Padlock from "assets/padlock.svg";
@@ -7,17 +7,18 @@ import { FormEvent, useEffect, useState } from "react";
 import { setCookie } from "utils/setCookie";
 import { isPasswordSet } from "utils/isPasswordSet";
 
-const PasswordPage = () => {
+const PasswordPage = ({ location }: PageProps) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const passwordIsSet = isPasswordSet();
+
+  const from = (location.state as { from?: string })?.from ?? "/";
 
   useEffect(() => {
     if (!passwordIsSet) {
       return;
     }
-
-    navigate("/");
+    navigate(from);
   }, [passwordIsSet]);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const PasswordPage = () => {
     if (value === process.env.PASSWORD) {
       setCookie();
       setError("");
-      navigate("/");
+      navigate(from);
     } else {
       setError("Error! Passwords don't match!");
     }
