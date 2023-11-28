@@ -1,12 +1,16 @@
-import { HeadFC, PageProps, graphql } from "gatsby";
+import { HeadFC, PageProps, graphql, navigate } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 import MainLayout from "components/MainLayout";
 import SEO from "components/SEO";
-import useCheckPasswordSet from "hooks/useCheckPasswordSet";
+import { isPasswordSet } from "utils/isPasswordSet";
 
-const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
-  useCheckPasswordSet();
+const SectionPage = ({
+  data,
+  params,
+  location,
+}: PageProps<Queries.CaseStudyQuery>) => {
+  const passwordIsSet = isPasswordSet();
   const { contentfulCaseStudy } = data;
 
   const heroImage = getImage(contentfulCaseStudy?.heroImage ?? null);
@@ -18,6 +22,16 @@ const SectionPage = ({ data }: PageProps<Queries.CaseStudyQuery>) => {
 
   const caseStudySection = contentfulCaseStudy?.caseStudySection;
 
+  if (!passwordIsSet) {
+    if (params?.name === "near-u") {
+      navigate("/password", {
+        state: {
+          from: location?.pathname,
+        },
+      });
+      return null;
+    }
+  }
   return (
     <MainLayout>
       <div className="mx-[-1rem] sm:mx-[-3rem]">

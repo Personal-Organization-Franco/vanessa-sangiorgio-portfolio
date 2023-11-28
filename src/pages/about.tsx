@@ -3,12 +3,10 @@ import SEO from "components/SEO";
 import MainLayout from "components/MainLayout";
 import { useAboutPage } from "hooks/useAboutPage";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import useCheckPasswordSet from "hooks/useCheckPasswordSet";
 
 const AboutPage = ({
   data: pageData,
 }: PageProps<Queries.AboutPageLinksQuery>) => {
-  useCheckPasswordSet();
   const data = useAboutPage();
   const image = getImage(data?.profilePic ?? null);
 
@@ -34,7 +32,7 @@ const AboutPage = ({
           )}
         </div>
       </div>
-      <nav className="mb-6 sm:mb-32 gap-16 flex flex-col sm:flex-row">
+      <nav className="mb-6 sm:mb-32 gap-4 sm:gap-16 flex flex-col sm:flex-row">
         {pageData?.contentfulHomePage?.heroLinks?.map(link => (
           <a
             className="text-sm sm:text-xl font-normal text-grey-2"

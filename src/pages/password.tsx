@@ -1,4 +1,4 @@
-import { HeadFC, navigate } from "gatsby";
+import { HeadFC, PageProps, navigate } from "gatsby";
 
 import MainLayout from "components/MainLayout";
 import Padlock from "assets/padlock.svg";
@@ -7,17 +7,18 @@ import { FormEvent, useEffect, useState } from "react";
 import { setCookie } from "utils/setCookie";
 import { isPasswordSet } from "utils/isPasswordSet";
 
-const PasswordPage = () => {
+const PasswordPage = ({ location }: PageProps) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const passwordIsSet = isPasswordSet();
+
+  const from = (location.state as { from?: string })?.from ?? "/";
 
   useEffect(() => {
     if (!passwordIsSet) {
       return;
     }
-
-    navigate("/");
+    navigate(from);
   }, [passwordIsSet]);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const PasswordPage = () => {
     if (value === process.env.PASSWORD) {
       setCookie();
       setError("");
-      navigate("/");
+      navigate(from);
     } else {
       setError("Error! Passwords don't match!");
     }
@@ -42,10 +43,10 @@ const PasswordPage = () => {
 
   return (
     <MainLayout>
-      <div className="flex flex-col items-center py-14">
-        <div className="flex flex-col items-center my-40">
+      <div className="flex flex-col items-center sm:py-14">
+        <div className="flex flex-col items-center my-24 sm:my-40">
           <Padlock className="mb-5" />
-          <h2 className="text-2xl font-medium tracking-[0.24px] mb-11 text-grey-1">
+          <h2 className="text-lg sm:text-2xl font-medium tracking-[0.24px] mb-11 text-grey-1">
             Please enter password to view my portfolio
           </h2>
           <form className="w-full" onSubmit={handleSubmit}>
@@ -64,7 +65,7 @@ const PasswordPage = () => {
               <button
                 type="submit"
                 disabled={!value}
-                className="absolute cursor-pointer bottom-1.5 right-4 disabled:opacity-60"
+                className="bg-[#ffffff] absolute cursor-pointer bottom-1.5 right-4 disabled:opacity-60"
               >
                 <ArrowCircleRight />
               </button>
@@ -75,7 +76,7 @@ const PasswordPage = () => {
               </div>
             )}
           </form>
-          <div className="flex mt-4 text-xl font-normal">
+          <div className="flex mt-4 text-sm sm:text-xl font-normal">
             <p>Would you like the password?</p>
             <a
               className="text-[#0166CC] ml-1.5"
