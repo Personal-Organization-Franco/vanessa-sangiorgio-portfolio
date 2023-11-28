@@ -9,7 +9,7 @@ const HomePageHero = () => {
           {heroText}
         </h1>
       </div>
-      <nav className="mb-6 sm:mb-32 gap-16 flex flex-col sm:flex-row">
+      <nav className="mb-6 sm:mb-32 sm:gap-16 gap-4 flex flex-col sm:flex-row">
         {heroLinks.map(link => (
           <a
             className="text-sm sm:text-xl font-normal text-grey-2"
