@@ -236,6 +236,10 @@ export const query = graphql`
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
+          file {
+            contentType
+            url
+          }
         }
         image1Caption
         image2 {
@@ -244,6 +248,10 @@ export const query = graphql`
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
+          file {
+            contentType
+            url
+          }
         }
         image2Caption
         image3 {
@@ -252,6 +260,10 @@ export const query = graphql`
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
+          file {
+            contentType
+            url
+          }
         }
         image3Caption
         image4 {
@@ -260,6 +272,10 @@ export const query = graphql`
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
+          file {
+            contentType
+            url
+          }
         }
         image4Caption
         image5 {
@@ -268,6 +284,10 @@ export const query = graphql`
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
+          file {
+            contentType
+            url
+          }
         }
         image5Caption
       }
