@@ -27,7 +27,7 @@ jobs:
           echo PASSWORD=${{ secrets.PASSWORD }} >> .env.production
       - run: pnpm build
       - run: rm .env.production
-      - name: Configure AWS credentials from Github account
+      - name: Configure AWS credentials for test account
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::781928496898:role/aws-github-prod
@@ -35,3 +35,11 @@ jobs:
       - name: Copy files to the website with the AWS CLI
         run: |
           aws s3 sync public s3://vanessa-sangiorgio-portfolio
+      - name: Configure AWS credentials for production account
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::749329441554:role/aws-github-prod
+          aws-region: eu-west-2
+      - name: Copy files to the production website with the AWS CLI
+        run: |
+          aws s3 sync public s3://vanessasangiorgio.com
