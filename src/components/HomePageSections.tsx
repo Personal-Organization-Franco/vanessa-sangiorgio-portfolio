@@ -49,7 +49,7 @@ const HomePageSections = () => {
             <p className="text-sm sm:text-xl font-normal text-grey-1 leading-8 sm:max-w-[400px]">
               <span>{projectDescription?.projectDescription}</span>
               <span
-                className="text-[#0166CC] flex items-center mt-8 text-xl"
+                className="text-[#0166CC] flex items-center mt-8 text-sm sm:text-xl"
                 onClick={() => navigate(projectPath)}
               >
                 Read More
