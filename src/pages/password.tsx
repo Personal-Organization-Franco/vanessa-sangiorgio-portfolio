@@ -47,7 +47,7 @@ const PasswordPage = ({ location }: PageProps) => {
         <div className="flex flex-col items-center my-24 sm:my-40">
           <Padlock className="mb-5" />
           <h2 className="text-lg sm:text-2xl font-medium tracking-[0.24px] mb-11 text-grey-1">
-            Please enter password to view my portfolio
+            Please enter password to view this case study
           </h2>
           <form className="w-full" onSubmit={handleSubmit}>
             <label
