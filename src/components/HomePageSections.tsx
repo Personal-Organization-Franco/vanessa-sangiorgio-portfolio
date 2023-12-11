@@ -40,13 +40,13 @@ const HomePageSections = () => {
                 className="row-span-3 col-span-2"
               />
             )}
-            <p className="text-sm sm:text-xl font-normal text-grey-3 py-8 sm:py-0">
+            <p className="text-xs sm:text-xl font-normal text-grey-3 pt-8 pb-1 sm:py-0 sm:pb-0">
               {projectRole}
             </p>
-            <h3 className="text-xl sm:text-[54px] leading-tight font-normal">
+            <h3 className="pb-3 sm:pb-0 text-2xl sm:text-[54px] leading-tight font-normal">
               {projectTitle}
             </h3>
-            <p className="text-sm sm:text-xl font-normal text-grey-1 leading-8 sm:max-w-[400px]">
+            <p className="text-base sm:text-xl font-normal text-grey-1 leading-6 sm:max-w-[400px]">
               <span>{projectDescription?.projectDescription}</span>
               <span
                 className="text-[#0166CC] flex items-center mt-8 text-sm sm:text-xl"
