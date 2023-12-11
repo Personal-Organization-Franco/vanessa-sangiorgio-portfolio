@@ -81,15 +81,26 @@ const SectionPage = ({
       </section>
       {/** case study sections*/}
       {caseStudySection?.map(section => {
-        const image1 = getImage(section?.image1 ?? null);
+        //getImage(section?.image1 ?? null)
+        const image1 = section?.image1?.file?.contentType?.includes("gif")
+          ? section?.image1.file?.url
+          : getImage(section?.image1 ?? null);
         const image1Caption = section?.image1Caption;
-        const image2 = getImage(section?.image2 ?? null);
+        const image2 = section?.image2?.file?.contentType?.includes("gif")
+          ? section?.image2.file?.url
+          : getImage(section?.image2 ?? null);
         const image2Caption = section?.image2Caption;
-        const image3 = getImage(section?.image3 ?? null);
+        const image3 = section?.image3?.file?.contentType?.includes("gif")
+          ? section?.image3.file?.url
+          : getImage(section?.image3 ?? null);
         const image3Caption = section?.image3Caption;
-        const image4 = getImage(section?.image4 ?? null);
+        const image4 = section?.image4?.file?.contentType?.includes("gif")
+          ? section?.image4.file?.url
+          : getImage(section?.image4 ?? null);
         const image4Caption = section?.image4Caption;
-        const image5 = getImage(section?.image5 ?? null);
+        const image5 = section?.image5?.file?.contentType?.includes("gif")
+          ? section?.image5.file?.url
+          : getImage(section?.image5 ?? null);
         const image5Caption = section?.image5Caption;
 
         return (
@@ -117,11 +128,10 @@ const SectionPage = ({
             {image1 && (
               <>
                 <div className="pt:4 sm:pt-14">
-                  {image1 && (
-                    <GatsbyImage
-                      image={image1}
-                      alt={overview?.overviewPicsCaption ?? ""}
-                    />
+                  {typeof image1 === "string" ? (
+                    <img src={image1} alt={image1Caption ?? ""} />
+                  ) : (
+                    <GatsbyImage image={image1} alt={image1Caption ?? ""} />
                   )}
                 </div>
                 <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
@@ -132,11 +142,10 @@ const SectionPage = ({
             {image2 && (
               <>
                 <div className="pt:4 sm:pt-14">
-                  {image2 && (
-                    <GatsbyImage
-                      image={image2}
-                      alt={overview?.overviewPicsCaption ?? ""}
-                    />
+                  {typeof image2 === "string" ? (
+                    <img src={image2} alt={image2Caption ?? ""} />
+                  ) : (
+                    <GatsbyImage image={image2} alt={image2Caption ?? ""} />
                   )}
                 </div>
                 <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
@@ -147,11 +156,10 @@ const SectionPage = ({
             {image3 && (
               <>
                 <div className="pt:4 sm:pt-14">
-                  {image3 && (
-                    <GatsbyImage
-                      image={image3}
-                      alt={overview?.overviewPicsCaption ?? ""}
-                    />
+                  {typeof image3 === "string" ? (
+                    <img src={image3} alt={image3Caption ?? ""} />
+                  ) : (
+                    <GatsbyImage image={image3} alt={image3Caption ?? ""} />
                   )}
                 </div>
                 <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
@@ -162,11 +170,10 @@ const SectionPage = ({
             {image4 && (
               <>
                 <div className="pt:4 sm:pt-14">
-                  {image4 && (
-                    <GatsbyImage
-                      image={image4}
-                      alt={overview?.overviewPicsCaption ?? ""}
-                    />
+                  {typeof image4 === "string" ? (
+                    <img src={image4} alt={image4Caption ?? ""} />
+                  ) : (
+                    <GatsbyImage image={image4} alt={image4Caption ?? ""} />
                   )}
                 </div>
                 <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
@@ -177,11 +184,10 @@ const SectionPage = ({
             {image5 && (
               <>
                 <div className="pt:4 sm:pt-14">
-                  {image5 && (
-                    <GatsbyImage
-                      image={image5}
-                      alt={overview?.overviewPicsCaption ?? ""}
-                    />
+                  {typeof image5 === "string" ? (
+                    <img src={image5} alt={image5Caption ?? ""} />
+                  ) : (
+                    <GatsbyImage image={image5} alt={image5Caption ?? ""} />
                   )}
                 </div>
                 <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
@@ -236,6 +242,10 @@ export const query = graphql`
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
+          file {
+            contentType
+            url
+          }
         }
         image1Caption
         image2 {
@@ -244,6 +254,10 @@ export const query = graphql`
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
+          file {
+            contentType
+            url
+          }
         }
         image2Caption
         image3 {
@@ -252,6 +266,10 @@ export const query = graphql`
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
+          file {
+            contentType
+            url
+          }
         }
         image3Caption
         image4 {
@@ -260,6 +278,10 @@ export const query = graphql`
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
+          file {
+            contentType
+            url
+          }
         }
         image4Caption
         image5 {
@@ -268,6 +290,10 @@ export const query = graphql`
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
           )
+          file {
+            contentType
+            url
+          }
         }
         image5Caption
       }
