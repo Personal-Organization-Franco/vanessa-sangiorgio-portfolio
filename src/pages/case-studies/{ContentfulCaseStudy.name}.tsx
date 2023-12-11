@@ -48,18 +48,18 @@ const SectionPage = ({
       {/** Overview */}
       <section className="flex flex-col justify-center items-center">
         <div className="flex flex-col justify-center items-start max-w-2xl py-8 sm:py-32">
-          <p className="text-sm sm:text-xl font-normal text-grey-3">
+          <p className="text-base sm:text-xl pt-8 pb-1 sm:py-0 sm:pb-0 font-normal text-grey-3">
             {overview?.projectRole}
           </p>
-          <h2 className="text-4xl font-medium text-grey-1 my-6">
+          <h2 className="text-2xl sm:text-4xl font-medium text-grey-1 mt-0 mb-6 sm:my-6">
             {overview?.overviewTitle}
           </h2>
           {overview?.boldText && (
-            <p className="text-grey-1 text-sm sm:text-xl mb-5 font-bold">
+            <p className="text-grey-1 text-base sm:text-xl mb-5 font-bold">
               {overview?.boldText}
             </p>
           )}
-          <p className="text-grey-1 font-normal text-sm sm:text-xl">
+          <p className="text-grey-1 font-normal text-base sm:text-xl">
             {overview?.roleDescription?.roleDescription}
           </p>
         </div>
@@ -109,10 +109,10 @@ const SectionPage = ({
             key={section?.sectionTitle}
           >
             <div className="flex flex-col justify-center items-start max-w-2xl py-8 sm:py-32">
-              <h2 className="text-4xl font-medium text-grey-1 my-6">
+              <h2 className="text-2xl sm:text-4xl font-medium text-grey-1 my-6">
                 {section?.sectionTitle}
               </h2>
-              <p className="text-grey-1 font-normal text-sm sm:text-xl">
+              <div className="text-grey-1 font-normal text-base sm:text-xl">
                 {(section?.sectionDescription?.sectionDescription ?? "")
                   .split("\n")
                   .map((item, i) => {
@@ -123,7 +123,7 @@ const SectionPage = ({
                       </p>
                     );
                   })}
-              </p>
+              </div>
             </div>
             {image1 && (
               <>
