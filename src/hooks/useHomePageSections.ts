@@ -15,6 +15,10 @@ export const useHomePageSections = () => {
               placeholder: BLURRED
               formats: [AUTO, WEBP, AVIF]
             )
+            file {
+              contentType
+              url
+            }
           }
           projectRole
           projectTitle
