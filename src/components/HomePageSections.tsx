@@ -38,7 +38,11 @@ const HomePageSections = () => {
             {image && (
               <>
                 {typeof image === "string" ? (
-                  <img src={image} alt={projectTitle ?? ""} />
+                  <img
+                    className="row-span-3 col-span-2"
+                    src={image}
+                    alt={projectTitle ?? ""}
+                  />
                 ) : (
                   <GatsbyImage
                     image={image}
