@@ -19,7 +19,9 @@ const HomePageSections = () => {
           projectPath,
         } = section;
 
-        const image = getImage(projectImage);
+        const image = projectImage?.file?.contentType?.includes("gif")
+          ? projectImage.file.url
+          : getImage(projectImage);
 
         return (
           <section
@@ -34,11 +36,17 @@ const HomePageSections = () => {
             }
           >
             {image && (
-              <GatsbyImage
-                image={image}
-                alt={projectTitle ?? ""}
-                className="row-span-3 col-span-2"
-              />
+              <>
+                {typeof image === "string" ? (
+                  <img src={image} alt={projectTitle ?? ""} />
+                ) : (
+                  <GatsbyImage
+                    image={image}
+                    alt={projectTitle ?? ""}
+                    className="row-span-3 col-span-2"
+                  />
+                )}
+              </>
             )}
             <p className="text-base sm:text-xl font-normal text-grey-3 pt-8 pb-1 sm:py-0 sm:pb-0">
               {projectRole}
