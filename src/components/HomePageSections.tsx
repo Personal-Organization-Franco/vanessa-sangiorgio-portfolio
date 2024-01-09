@@ -39,7 +39,7 @@ const HomePageSections = () => {
               <>
                 {typeof image === "string" ? (
                   <img
-                    className="row-span-3 col-span-2"
+                    className="row-span-4 col-span-2"
                     src={image}
                     alt={projectTitle ?? ""}
                   />
@@ -47,15 +47,15 @@ const HomePageSections = () => {
                   <GatsbyImage
                     image={image}
                     alt={projectTitle ?? ""}
-                    className="row-span-3 col-span-2"
+                    className="row-span-4 col-span-2"
                   />
                 )}
               </>
             )}
-            <p className="text-base sm:text-xl font-normal text-grey-3 pt-8 pb-1 sm:py-0 sm:pb-0">
+            <p className="text-base sm:text-xl font-normal text-grey-3 pt-8 pb-1 sm:py-0 sm:pb-8">
               {projectRole}
             </p>
-            <h3 className="pb-3 sm:pb-0 text-2xl sm:text-[54px] leading-tight font-normal">
+            <h3 className="pb-3 sm:pb-8 text-2xl sm:text-[54px] leading-tight font-normal">
               {projectTitle}
             </h3>
             <p className="text-base sm:text-xl font-normal text-grey-1 leading-6 sm:max-w-[400px]">
