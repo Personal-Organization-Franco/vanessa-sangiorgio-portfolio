@@ -1,49 +1,76 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
+# Vanessa Sangiorgio Portfolio
 
-## 🚀 Quick start
+Professional portfolio website for Vanessa Sangiorgio, London-based product
+designer.
 
-1.  **Create a Gatsby site.**
+**Live**: <https://vanessasangiorgio.com>
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+## Tech Stack
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
+- **Framework**: Gatsby 5.12 (React 18, TypeScript 5)
+- **CMS**: Contentful (headless)
+- **Styling**: Tailwind CSS 3.3 + PostCSS
+- **Fonts**: Open Sans (Google Fonts)
+- **Image Optimization**: gatsby-plugin-image, Sharp (responsive WEBP/AVIF)
+- **Analytics**: Google Analytics 4
+- **Deployment**: AWS S3 (GitHub Actions CI/CD)
 
-2.  **Start developing.**
+## Features
 
-    Navigate into your new site’s directory and start it up.
+- **Dynamic Content**: Case studies + sections fetched from Contentful
+- **Password Protection**: Cookie-based auth for restricted case studies
+- **Image Optimization**: Responsive images, lazy loading, dominant color
+  placeholders
+- **SEO**: Sitemap generation, meta tags, React Helmet
+- **PWA**: Web manifest support
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+## Development
 
-3.  **Open the code and start customizing!**
+```bash
+# Install dependencies
+pnpm i --frozen-lockfile
 
-    Your site is now running at http://localhost:8000!
+# Local dev server
+pnpm develop
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+# Production build
+pnpm build
 
-4.  **Learn more**
+# Type checking
+pnpm typecheck
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+# Linting
+pnpm lint:fix
+```
 
-## 🚀 Quick start (Netlify)
+**Environment variables** (`.env.development`, `.env.production`):
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+```env
+CONTENTFUL_ACCESS_TOKEN=<token>
+PASSWORD=<password>
+```
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+## Deployment
+
+GitHub Actions workflow deploys to AWS S3 on push to `main`:
+
+- Test: `s3://vanessa-sangiorgio-portfolio`
+- Production: `s3://vanessasangiorgio.com`
+
+Uses OIDC-based AWS credentials (no static keys).
+
+## Project Structure
+
+```text
+src/
+  components/   Layout, Hero, Sections, SEO, Header, Footer
+  pages/        index, about, password, 404, case-studies/{dynamic}
+  hooks/        GraphQL data hooks
+  utils/        Cookie & auth utilities
+  styles/       Tailwind config
+  assets/       SVG icons
+```
+
+## Author
+
+Francesco Albanese
