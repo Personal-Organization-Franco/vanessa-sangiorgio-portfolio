@@ -44,3 +44,9 @@ jobs:
       - name: Copy files to the production website with the AWS CLI
         run: |
           aws s3 sync public s3://vanessasangiorgio.com
+      - name: Invalidate CloudFront cache for www
+        run: |
+          aws cloudfront create-invalidation --distribution-id E1N737I6PF2XLH --paths "/*"
+      - name: Invalidate CloudFront cache for non-www
+        run: |
+          aws cloudfront create-invalidation --distribution-id E1P5SFLJWXACV0 --paths "/*"
