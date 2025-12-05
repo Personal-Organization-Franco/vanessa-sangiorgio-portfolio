@@ -32,7 +32,7 @@ const PasswordPage = ({ location }: PageProps) => {
     setError("");
     if (!value) return;
 
-    if (value === process.env.PASSWORD) {
+    if (value === process.env.GATSBY_PASSWORD) {
       setCookie();
       setError("");
       navigate(from);

@@ -21,11 +21,11 @@ jobs:
       - run: pnpm i --frozen-lockfile --strict-peer-dependencies
         env:
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-          PASSWORD: ${{ secrets.PASSWORD }}
+          GATSBY_PASSWORD: ${{ secrets.GATSBY_PASSWORD }}
       - run: |
           touch .env.production
           echo CONTENTFUL_ACCESS_TOKEN=${{ secrets.CONTENTFUL_ACCESS_TOKEN }} >> .env.production
-          echo PASSWORD=${{ secrets.PASSWORD }} >> .env.production
+          echo GATSBY_PASSWORD=${{ secrets.GATSBY_PASSWORD }} >> .env.production
       - run: pnpm build
       - run: rm .env.production
       - name: Configure AWS credentials for test account
