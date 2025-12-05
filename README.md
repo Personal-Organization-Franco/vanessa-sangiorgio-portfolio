@@ -59,6 +59,10 @@ GitHub Actions workflow deploys to AWS S3 on push to `main`:
 
 Uses OIDC-based AWS credentials (no static keys).
 
+## Architecture
+
+![Architecture Diagram](diagrams/vanessa-portfolio-diagram.drawio.png)
+
 ## Project Structure
 
 ```text
