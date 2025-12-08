@@ -39,7 +39,7 @@ const HomePageSections = () => {
               <>
                 {typeof image === "string" ? (
                   <img
-                    className="row-span-4 col-span-2"
+                    className="row-span-4 col-span-2 h-full object-cover"
                     src={image}
                     alt={projectTitle ?? ""}
                   />
