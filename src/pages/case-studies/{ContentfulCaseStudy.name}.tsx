@@ -1,5 +1,6 @@
 import { HeadFC, PageProps, graphql, navigate } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import ReactMarkdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
 import SEO from "components/SEO";
@@ -59,9 +60,30 @@ const SectionPage = ({
               {overview?.boldText}
             </p>
           )}
-          <p className="text-grey-1 font-normal text-base sm:text-xl">
-            {overview?.roleDescription?.roleDescription}
-          </p>
+          <div className="text-grey-1 font-normal text-base sm:text-xl">
+            <ReactMarkdown
+              components={{
+                p: ({ node, ...props }) => (
+                  <p className="mb-4 last:mb-0" {...props} />
+                ),
+                strong: ({ node, ...props }) => (
+                  <strong className="font-bold" {...props} />
+                ),
+                em: ({ node, ...props }) => (
+                  <em className="italic" {...props} />
+                ),
+                ul: ({ node, ...props }) => (
+                  <ul className="list-disc ml-6 mb-4" {...props} />
+                ),
+                ol: ({ node, ...props }) => (
+                  <ol className="list-decimal ml-6 mb-4" {...props} />
+                ),
+                li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+              }}
+            >
+              {overview?.roleDescription?.roleDescription ?? ""}
+            </ReactMarkdown>
+          </div>
         </div>
         {overviewPics.map((pic, index) => {
           return (
@@ -113,16 +135,30 @@ const SectionPage = ({
                 {section?.sectionTitle}
               </h2>
               <div className="text-grey-1 font-normal text-base sm:text-xl">
-                {(section?.sectionDescription?.sectionDescription ?? "")
-                  .split("\n")
-                  .map((item, i) => {
-                    return (
-                      <p key={i}>
-                        {item}
-                        <br />
-                      </p>
-                    );
-                  })}
+                <ReactMarkdown
+                  components={{
+                    p: ({ node, ...props }) => (
+                      <p className="mb-4 last:mb-0" {...props} />
+                    ),
+                    strong: ({ node, ...props }) => (
+                      <strong className="font-bold" {...props} />
+                    ),
+                    em: ({ node, ...props }) => (
+                      <em className="italic" {...props} />
+                    ),
+                    ul: ({ node, ...props }) => (
+                      <ul className="list-disc ml-6 mb-4" {...props} />
+                    ),
+                    ol: ({ node, ...props }) => (
+                      <ol className="list-decimal ml-6 mb-4" {...props} />
+                    ),
+                    li: ({ node, ...props }) => (
+                      <li className="mb-1" {...props} />
+                    ),
+                  }}
+                >
+                  {section?.sectionDescription?.sectionDescription ?? ""}
+                </ReactMarkdown>
               </div>
             </div>
             {image1 && (
