@@ -1,5 +1,7 @@
 import { HeadFC, PageProps, graphql, navigate } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { BLOCKS } from "@contentful/rich-text-types";
 import ReactMarkdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
@@ -46,6 +48,15 @@ const SectionPage = ({
       <h1 className="text-grey-1 font-normal text-center text-xl sm:text-[54px] leading-tight py-4 sm:py-10">
         {contentfulCaseStudy?.heroTitle}
       </h1>
+      {contentfulCaseStudy?.heroSubtitle && (
+        <h2 className="text-grey-1 font-normal italic text-center text-lg sm:text-[46px] leading-tight pb-4 sm:pb-10">
+          {renderRichText(contentfulCaseStudy.heroSubtitle, {
+            renderNode: {
+              [BLOCKS.PARAGRAPH]: (_node, children) => <span>{children}</span>,
+            },
+          })}
+        </h2>
+      )}
       {/** Overview */}
       <section className="flex flex-col justify-center items-center">
         <div className="flex flex-col justify-center items-start max-w-2xl py-8 sm:py-32">
@@ -251,6 +262,9 @@ export const query = graphql`
         )
       }
       heroTitle
+      heroSubtitle {
+        raw
+      }
       caseStudyOverview {
         projectRole
         overviewTitle
