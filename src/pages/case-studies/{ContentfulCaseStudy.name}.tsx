@@ -1,5 +1,7 @@
 import { HeadFC, PageProps, graphql, navigate } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { BLOCKS } from "@contentful/rich-text-types";
 import ReactMarkdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
@@ -43,12 +45,29 @@ const SectionPage = ({
           />
         )}
       </div>
-      <h1 className="text-grey-1 font-normal text-center text-xl sm:text-[54px] leading-tight py-4 sm:py-10">
-        {contentfulCaseStudy?.heroTitle}
-      </h1>
+      <section className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-start w-full max-w-4xl py-8 sm:py-32">
+          <h1 className="text-grey-1 font-normal text-xl sm:text-[54px] leading-tight pt-4 sm:pt-10 pb-4">
+            {contentfulCaseStudy?.heroTitle}
+          </h1>
+          {contentfulCaseStudy?.heroSubtitle && (
+            <div className="pb-4 sm:pb-10">
+              <h2 className="text-grey-2 font-normal italic text-left text-lg sm:text-[42px] leading-tight">
+                {renderRichText(contentfulCaseStudy.heroSubtitle, {
+                  renderNode: {
+                    [BLOCKS.PARAGRAPH]: (_node, children) => (
+                      <span>{children}</span>
+                    ),
+                  },
+                })}
+              </h2>
+            </div>
+          )}
+        </div>
+      </section>
       {/** Overview */}
       <section className="flex flex-col justify-center items-center">
-        <div className="flex flex-col justify-center items-start max-w-2xl py-8 sm:py-32">
+        <div className="flex flex-col justify-center items-start max-w-4xl py-8 sm:py-32">
           <p className="text-base sm:text-xl pt-8 pb-1 sm:py-0 sm:pb-0 font-normal text-grey-3">
             {overview?.projectRole}
           </p>
@@ -60,14 +79,20 @@ const SectionPage = ({
               {overview?.boldText}
             </p>
           )}
-          <div className="text-grey-1 font-normal text-base sm:text-xl">
+          <div className="text-grey-2 font-normal text-base sm:text-xl">
             <ReactMarkdown
               components={{
+                h3: ({ node, ...props }) => (
+                  <h3
+                    className="text-[36px] font-normal italic text-grey-2 leading-normal border-l-[6px] border-teal pl-6 my-8"
+                    {...props}
+                  />
+                ),
                 p: ({ node, ...props }) => (
                   <p className="mb-4 last:mb-0" {...props} />
                 ),
                 strong: ({ node, ...props }) => (
-                  <strong className="font-bold" {...props} />
+                  <strong className="font-bold text-grey-1" {...props} />
                 ),
                 em: ({ node, ...props }) => (
                   <em className="italic" {...props} />
@@ -130,18 +155,30 @@ const SectionPage = ({
             className="flex flex-col justify-center items-center"
             key={section?.sectionTitle}
           >
-            <div className="flex flex-col justify-center items-start max-w-2xl py-8 sm:py-32">
+            <div className="flex flex-col justify-center items-start max-w-4xl py-8 sm:py-32">
               <h2 className="text-2xl sm:text-4xl font-medium text-grey-1 my-6">
                 {section?.sectionTitle}
               </h2>
-              <div className="text-grey-1 font-normal text-base sm:text-xl">
+              <div className="text-grey-2 font-normal text-base sm:text-xl">
                 <ReactMarkdown
                   components={{
+                    h2: ({ node, ...props }) => (
+                      <h2
+                        className="text-4xl font-medium text-[#000000] mt-12 mb-4 first:mt-0"
+                        {...props}
+                      />
+                    ),
+                    h3: ({ node, ...props }) => (
+                      <h3
+                        className="text-[36px] font-normal italic text-grey-2 leading-normal border-l-[6px] border-teal pl-6 my-8"
+                        {...props}
+                      />
+                    ),
                     p: ({ node, ...props }) => (
                       <p className="mb-4 last:mb-0" {...props} />
                     ),
                     strong: ({ node, ...props }) => (
-                      <strong className="font-bold" {...props} />
+                      <strong className="font-bold text-grey-1" {...props} />
                     ),
                     em: ({ node, ...props }) => (
                       <em className="italic" {...props} />
@@ -226,9 +263,11 @@ const SectionPage = ({
                     <GatsbyImage image={image5} alt={image5Caption ?? ""} />
                   )}
                 </div>
-                <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
-                  {image5Caption}
-                </p>
+                {image5Caption && (
+                  <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
+                    {image5Caption}
+                  </p>
+                )}
               </>
             )}
           </section>
@@ -251,6 +290,9 @@ export const query = graphql`
         )
       }
       heroTitle
+      heroSubtitle {
+        raw
+      }
       caseStudyOverview {
         projectRole
         overviewTitle

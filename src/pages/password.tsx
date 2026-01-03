@@ -37,7 +37,7 @@ const PasswordPage = ({ location }: PageProps) => {
       setError("");
       navigate(from);
     } else {
-      setError("Error! Passwords don't match!");
+      setError("error");
     }
   };
 
@@ -72,7 +72,14 @@ const PasswordPage = ({ location }: PageProps) => {
             </label>
             {error && (
               <div className="w-fit mt-3 italic text-lg font-normal">
-                {error}
+                Incorrect password. Please email{" "}
+                <a
+                  className="text-[#0166CC]"
+                  href="mailto:vanessa.sangiorgio@yahoo.co.uk"
+                >
+                  vanessa.sangiorgio@yahoo.co.uk
+                </a>{" "}
+                to request access.
               </div>
             )}
           </form>
