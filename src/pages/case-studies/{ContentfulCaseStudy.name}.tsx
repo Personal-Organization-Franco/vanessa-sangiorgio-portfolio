@@ -237,9 +237,11 @@ const SectionPage = ({
                     <GatsbyImage image={image5} alt={image5Caption ?? ""} />
                   )}
                 </div>
-                <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
-                  {image5Caption}
-                </p>
+                {image5Caption && (
+                  <p className="text-center text-grey-2 font-normal text-sm sm:text-xl mt-2.5 pb-6 sm:pb-14">
+                    {image5Caption}
+                  </p>
+                )}
               </>
             )}
           </section>
