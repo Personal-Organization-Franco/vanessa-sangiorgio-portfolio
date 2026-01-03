@@ -82,6 +82,12 @@ const SectionPage = ({
           <div className="text-grey-2 font-normal text-base sm:text-xl">
             <ReactMarkdown
               components={{
+                h2: ({ node, ...props }) => (
+                  <h2
+                    className="text-4xl font-medium text-[#000000] mt-12 mb-4 first:mt-0"
+                    {...props}
+                  />
+                ),
                 h3: ({ node, ...props }) => (
                   <h3
                     className="text-[36px] font-normal italic text-grey-2 leading-normal border-l-[6px] border-teal pl-6 my-8"
