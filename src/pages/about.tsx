@@ -17,7 +17,7 @@ const AboutPage = ({
           <h1 className="text-xl sm:text-4xl font-medium mb-20 text-grey-1">
             {data?.title}
           </h1>
-          <p className="text-grey-1 text-sm sm:text-xl">
+          <p className="text-grey-2 text-sm sm:text-xl">
             {data?.description?.description}
           </p>
         </div>
