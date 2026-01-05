@@ -58,7 +58,7 @@ const HomePageSections = () => {
             <h3 className="pb-3 sm:pb-8 text-2xl sm:text-[54px] leading-tight font-normal">
               {projectTitle}
             </h3>
-            <p className="text-base sm:text-xl font-normal text-grey-1 leading-6 sm:max-w-[400px]">
+            <p className="text-base sm:text-xl font-normal text-grey-2 leading-6 sm:max-w-[400px]">
               <span>{projectDescription?.projectDescription}</span>
               <span
                 className="text-[#0166CC] flex items-center mt-8 text-sm sm:text-xl"
