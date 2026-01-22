@@ -25,8 +25,13 @@ const SectionPage = ({
 
   const caseStudySection = contentfulCaseStudy?.caseStudySection;
 
+  const PROTECTED_PROJECTS = ["near-u", "gwr-rewards"];
+
   if (!passwordIsSet) {
-    if (params?.name === "near-u" && typeof window !== "undefined") {
+    if (
+      PROTECTED_PROJECTS.includes(params?.name ?? "") &&
+      typeof window !== "undefined"
+    ) {
       navigate("/password", {
         state: {
           from: location?.pathname,
