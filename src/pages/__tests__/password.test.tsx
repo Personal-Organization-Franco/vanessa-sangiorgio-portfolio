@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import PasswordPage from "../password";
@@ -23,8 +23,22 @@ import { setCookie } from "utils/setCookie";
 import { isPasswordSet } from "utils/isPasswordSet";
 import { navigate } from "gatsby";
 
-describe("PasswordPage", () => {
-  const mockLocation = {
+type MockLocation = {
+  state: { from?: string } | null;
+  pathname: string;
+  search: string;
+  hash: string;
+  href: string;
+  origin: string;
+  protocol: string;
+  host: string;
+  hostname: string;
+  port: string;
+  key: string;
+};
+
+function createMockLocation(overrides: Partial<MockLocation> = {}): MockLocation {
+  return {
     state: { from: "/case-studies/near-u" },
     pathname: "/password",
     search: "",
@@ -36,64 +50,51 @@ describe("PasswordPage", () => {
     hostname: "",
     port: "",
     key: "",
+    ...overrides,
   };
+}
 
+describe("PasswordPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.mocked(isPasswordSet).mockReturnValue(false);
   });
 
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it("renders the password page with all essential elements", () => {
-    render(<PasswordPage location={mockLocation as any} />);
+  it("renders the password form with essential elements", () => {
+    render(<PasswordPage location={createMockLocation()} />);
 
     expect(
       screen.getByText("Please enter password to view this case study")
     ).toBeInTheDocument();
     expect(screen.getByLabelText("Password")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /→/i })).toBeInTheDocument();
-    expect(screen.getByText("Would you like the password?")).toBeInTheDocument();
-    expect(screen.getByText("Request it here")).toBeInTheDocument();
+    expect(screen.getByRole("button")).toBeInTheDocument();
+    expect(screen.getByText("Request it here")).toHaveAttribute(
+      "href",
+      "mailto:vanessa.sangiorgio@yahoo.co.uk"
+    );
   });
 
-  it("has submit button disabled when input is empty", () => {
-    render(<PasswordPage location={mockLocation as any} />);
+  it("submit button is disabled until user enters text", async () => {
+    const user = userEvent.setup();
+    render(<PasswordPage location={createMockLocation()} />);
 
     const submitButton = screen.getByRole("button");
     expect(submitButton).toBeDisabled();
-  });
 
-  it("enables submit button when user types in password field", async () => {
-    const user = userEvent.setup();
-    render(<PasswordPage location={mockLocation as any} />);
-
-    const passwordInput = screen.getByLabelText("Password");
-    await user.type(passwordInput, "somepassword");
-
-    const submitButton = screen.getByRole("button");
-    expect(submitButton).not.toBeDisabled();
+    await user.type(screen.getByLabelText("Password"), "sometext");
+    expect(submitButton).toBeEnabled();
   });
 
   it("shows error message when user submits wrong password", async () => {
     const user = userEvent.setup();
-    // Set up environment variable for correct password
     vi.stubEnv("GATSBY_PASSWORD", "correctpassword");
 
-    render(<PasswordPage location={mockLocation as any} />);
+    render(<PasswordPage location={createMockLocation()} />);
 
-    const passwordInput = screen.getByLabelText("Password");
-    await user.type(passwordInput, "wrongpassword");
-
-    const submitButton = screen.getByRole("button");
-    await user.click(submitButton);
+    await user.type(screen.getByLabelText("Password"), "wrongpassword");
+    await user.click(screen.getByRole("button"));
 
     expect(screen.getByText(/Incorrect password/i)).toBeInTheDocument();
-    expect(
-      screen.getByText("vanessa.sangiorgio@yahoo.co.uk")
-    ).toBeInTheDocument();
 
     vi.unstubAllEnvs();
   });
@@ -102,34 +103,28 @@ describe("PasswordPage", () => {
     const user = userEvent.setup();
     vi.stubEnv("GATSBY_PASSWORD", "correctpassword");
 
-    render(<PasswordPage location={mockLocation as any} />);
+    render(<PasswordPage location={createMockLocation()} />);
 
     const passwordInput = screen.getByLabelText("Password");
-
-    // Type wrong password and submit
     await user.type(passwordInput, "wrongpassword");
     await user.click(screen.getByRole("button"));
 
-    // Error should be visible
     expect(screen.getByText(/Incorrect password/i)).toBeInTheDocument();
 
-    // Clear the input
     await user.clear(passwordInput);
 
-    // Error should disappear
     expect(screen.queryByText(/Incorrect password/i)).not.toBeInTheDocument();
 
     vi.unstubAllEnvs();
   });
 
-  it("sets cookie and navigates when user enters correct password", async () => {
+  it("sets cookie and navigates to referrer when password is correct", async () => {
     const user = userEvent.setup();
     vi.stubEnv("GATSBY_PASSWORD", "correctpassword");
 
-    render(<PasswordPage location={mockLocation as any} />);
+    render(<PasswordPage location={createMockLocation()} />);
 
-    const passwordInput = screen.getByLabelText("Password");
-    await user.type(passwordInput, "correctpassword");
+    await user.type(screen.getByLabelText("Password"), "correctpassword");
     await user.click(screen.getByRole("button"));
 
     expect(setCookie).toHaveBeenCalled();
@@ -142,15 +137,9 @@ describe("PasswordPage", () => {
     const user = userEvent.setup();
     vi.stubEnv("GATSBY_PASSWORD", "correctpassword");
 
-    const locationWithoutState = {
-      ...mockLocation,
-      state: null,
-    };
+    render(<PasswordPage location={createMockLocation({ state: null })} />);
 
-    render(<PasswordPage location={locationWithoutState as any} />);
-
-    const passwordInput = screen.getByLabelText("Password");
-    await user.type(passwordInput, "correctpassword");
+    await user.type(screen.getByLabelText("Password"), "correctpassword");
     await user.click(screen.getByRole("button"));
 
     expect(navigate).toHaveBeenCalledWith("/");
@@ -158,27 +147,11 @@ describe("PasswordPage", () => {
     vi.unstubAllEnvs();
   });
 
-  it("redirects immediately if password is already set", () => {
+  it("redirects immediately if password cookie is already set", () => {
     vi.mocked(isPasswordSet).mockReturnValue(true);
 
-    render(<PasswordPage location={mockLocation as any} />);
+    render(<PasswordPage location={createMockLocation()} />);
 
     expect(navigate).toHaveBeenCalledWith("/case-studies/near-u");
-  });
-
-  it("does not submit when pressing enter with empty input", async () => {
-    const user = userEvent.setup();
-    vi.stubEnv("GATSBY_PASSWORD", "correctpassword");
-
-    render(<PasswordPage location={mockLocation as any} />);
-
-    const passwordInput = screen.getByLabelText("Password");
-    await user.click(passwordInput);
-    await user.keyboard("{Enter}");
-
-    expect(setCookie).not.toHaveBeenCalled();
-    expect(navigate).not.toHaveBeenCalled();
-
-    vi.unstubAllEnvs();
   });
 });

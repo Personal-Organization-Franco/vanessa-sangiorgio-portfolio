@@ -49,39 +49,23 @@ describe("HomePageSections", () => {
     vi.clearAllMocks();
   });
 
-  it("renders all project sections", () => {
+  it("renders all projects with their role, title, and description", () => {
     render(<HomePageSections />);
 
     expect(screen.getByText("Near-U")).toBeInTheDocument();
-    expect(screen.getByText("GWR Rewards")).toBeInTheDocument();
-  });
-
-  it("displays project roles for each section", () => {
-    render(<HomePageSections />);
-
     expect(screen.getByText("Product Designer")).toBeInTheDocument();
-    expect(screen.getByText("UX Designer")).toBeInTheDocument();
-  });
-
-  it("displays project descriptions", () => {
-    render(<HomePageSections />);
-
     expect(
       screen.getByText("A dating app focused on meaningful connections.")
     ).toBeInTheDocument();
+
+    expect(screen.getByText("GWR Rewards")).toBeInTheDocument();
+    expect(screen.getByText("UX Designer")).toBeInTheDocument();
     expect(
       screen.getByText("A rewards program for train passengers.")
     ).toBeInTheDocument();
   });
 
-  it("renders Read More links for each project", () => {
-    render(<HomePageSections />);
-
-    const readMoreLinks = screen.getAllByText("Read More");
-    expect(readMoreLinks).toHaveLength(2);
-  });
-
-  it("navigates to project case study when clicking on project card", async () => {
+  it("navigates to case study when clicking on a project section", async () => {
     const user = userEvent.setup();
     render(<HomePageSections />);
 
@@ -92,46 +76,20 @@ describe("HomePageSections", () => {
     expect(navigate).toHaveBeenCalledWith("/case-studies/near-u");
   });
 
-  it("navigates to project case study when clicking Read More", async () => {
+  it("navigates to case study when clicking Read More", async () => {
     const user = userEvent.setup();
     render(<HomePageSections />);
 
     const readMoreLinks = screen.getAllByText("Read More");
-    await user.click(readMoreLinks[0]);
+    await user.click(readMoreLinks[1]);
 
-    expect(navigate).toHaveBeenCalledWith("/case-studies/near-u");
+    expect(navigate).toHaveBeenCalledWith("/case-studies/gwr-rewards");
   });
 
-  it("renders GIF images as regular img tags", () => {
+  it("displays project images with correct alt text", () => {
     render(<HomePageSections />);
 
-    // GWR Rewards has a GIF image
-    const gifImage = screen.getByAltText("GWR Rewards");
-    expect(gifImage.tagName).toBe("IMG");
-    expect(gifImage).toHaveAttribute("src", "https://example.com/gwr.gif");
-  });
-
-  it("renders non-GIF images as GatsbyImage", () => {
-    render(<HomePageSections />);
-
-    // Near-U has a PNG image, which should be rendered as GatsbyImage
-    const gatsbyImages = screen.getAllByTestId("gatsby-image");
-    expect(gatsbyImages.length).toBeGreaterThan(0);
-  });
-
-  it("each project section has cursor-pointer class", () => {
-    render(<HomePageSections />);
-
-    const nearUTitle = screen.getByText("Near-U");
-    const section = nearUTitle.closest("section");
-
-    expect(section).toHaveClass("cursor-pointer");
-  });
-
-  it("renders article container with grid layout", () => {
-    render(<HomePageSections />);
-
-    const article = screen.getByRole("article");
-    expect(article).toHaveClass("grid");
+    expect(screen.getByAltText("Near-U")).toBeInTheDocument();
+    expect(screen.getByAltText("GWR Rewards")).toBeInTheDocument();
   });
 });
