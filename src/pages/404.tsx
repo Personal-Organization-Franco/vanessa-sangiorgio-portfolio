@@ -1,8 +1,8 @@
-import { Link, HeadFC } from "gatsby";
+import { type HeadFC, Link } from "gatsby";
 
-import MainLayout from "../components/MainLayout";
-import { use404 } from "hooks/use404";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { use404 } from "hooks/use404";
+import MainLayout from "../components/MainLayout";
 
 const NotFoundPage = () => {
   const data = use404();
@@ -40,8 +40,9 @@ const NotFoundPage = () => {
                 href={link?.href ?? ""}
                 target="_blank"
                 key={link?.name}
+                rel="noreferrer"
               >
-                {link?.name?.includes("vanessa") ? "Email" : link?.name ?? ""}
+                {link?.name?.includes("vanessa") ? "Email" : (link?.name ?? "")}
               </a>
             ))}
           </nav>

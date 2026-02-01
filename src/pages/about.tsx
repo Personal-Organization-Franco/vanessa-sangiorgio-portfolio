@@ -1,8 +1,8 @@
-import { graphql, PageProps, type HeadFC } from "gatsby";
-import SEO from "components/SEO";
 import MainLayout from "components/MainLayout";
-import { useAboutPage } from "hooks/useAboutPage";
+import SEO from "components/SEO";
+import { type HeadFC, type PageProps, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { useAboutPage } from "hooks/useAboutPage";
 
 const AboutPage = ({
   data: pageData,
@@ -39,6 +39,7 @@ const AboutPage = ({
             href={link?.href ?? ""}
             target="_blank"
             key={link?.name}
+            rel="noreferrer"
           >
             {link?.name ?? ""}
           </a>

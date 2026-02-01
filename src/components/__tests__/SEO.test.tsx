@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
 import { render } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import SEO from "../SEO";
 
 // Mock the useSiteMetadata hook
@@ -16,10 +16,12 @@ describe("SEO", () => {
     render(<SEO />);
 
     expect(document.querySelector("title")?.textContent).toBe(
-      "Vanessa Sangiorgio"
+      "Vanessa Sangiorgio",
     );
     expect(
-      document.querySelector('meta[name="description"]')?.getAttribute("content")
+      document
+        .querySelector('meta[name="description"]')
+        ?.getAttribute("content"),
     ).toBe("Product Designer Portfolio");
   });
 
@@ -27,7 +29,7 @@ describe("SEO", () => {
     render(<SEO title="Work Page" />);
 
     expect(document.querySelector("title")?.textContent).toBe(
-      "Vanessa Sangiorgio - Work Page"
+      "Vanessa Sangiorgio - Work Page",
     );
   });
 
@@ -35,7 +37,9 @@ describe("SEO", () => {
     render(<SEO description="Custom page description" />);
 
     expect(
-      document.querySelector('meta[name="description"]')?.getAttribute("content")
+      document
+        .querySelector('meta[name="description"]')
+        ?.getAttribute("content"),
     ).toBe("Custom page description");
   });
 
@@ -43,11 +47,11 @@ describe("SEO", () => {
     render(
       <SEO>
         <meta name="robots" content="index, follow" />
-      </SEO>
+      </SEO>,
     );
 
     expect(
-      document.querySelector('meta[name="robots"]')?.getAttribute("content")
+      document.querySelector('meta[name="robots"]')?.getAttribute("content"),
     ).toBe("index, follow");
   });
 });

@@ -1,6 +1,6 @@
-import { describe, it, expect, afterEach } from "vitest";
-import { isPasswordSet } from "../isPasswordSet";
 import { clearAllCookies } from "test-utils/cookies";
+import { afterEach, describe, expect, it } from "vitest";
+import { isPasswordSet } from "../isPasswordSet";
 
 describe("isPasswordSet", () => {
   afterEach(() => {

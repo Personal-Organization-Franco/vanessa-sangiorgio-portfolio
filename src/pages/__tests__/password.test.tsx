@@ -1,6 +1,6 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import PasswordPage from "../password";
 
 // Mock the utility functions
@@ -19,9 +19,9 @@ vi.mock("components/MainLayout", () => ({
   ),
 }));
 
-import { setCookie } from "utils/setCookie";
-import { isPasswordSet } from "utils/isPasswordSet";
 import { navigate } from "gatsby";
+import { isPasswordSet } from "utils/isPasswordSet";
+import { setCookie } from "utils/setCookie";
 
 type MockLocation = {
   state: { from?: string } | null;
@@ -37,7 +37,9 @@ type MockLocation = {
   key: string;
 };
 
-function createMockLocation(overrides: Partial<MockLocation> = {}): MockLocation {
+function createMockLocation(
+  overrides: Partial<MockLocation> = {},
+): MockLocation {
   return {
     state: { from: "/case-studies/near-u" },
     pathname: "/password",
@@ -64,13 +66,13 @@ describe("PasswordPage", () => {
     render(<PasswordPage location={createMockLocation()} />);
 
     expect(
-      screen.getByText("Please enter password to view this case study")
+      screen.getByText("Please enter password to view this case study"),
     ).toBeInTheDocument();
     expect(screen.getByLabelText("Password")).toBeInTheDocument();
     expect(screen.getByRole("button")).toBeInTheDocument();
     expect(screen.getByText("Request it here")).toHaveAttribute(
       "href",
-      "mailto:vanessa.sangiorgio@yahoo.co.uk"
+      "mailto:vanessa.sangiorgio@yahoo.co.uk",
     );
   });
 

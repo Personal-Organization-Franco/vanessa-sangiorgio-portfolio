@@ -1,8 +1,8 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Header from "../Header";
 import { navigate } from "gatsby";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import Header from "../Header";
 
 // Mock the useHeaderData hook
 vi.mock("hooks/useHeaderData", () => ({

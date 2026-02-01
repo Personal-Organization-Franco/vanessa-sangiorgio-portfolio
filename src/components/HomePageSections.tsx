@@ -24,9 +24,11 @@ const HomePageSections = () => {
           : getImage(projectImage);
 
         return (
-          <section
+          <div
             key={projectTitle}
             className="flex flex-col sm:grid sm:grid-flow-col gap-x-9 cursor-pointer"
+            role="button"
+            tabIndex={0}
             onClick={
               projectPath
                 ? () => {
@@ -34,24 +36,30 @@ const HomePageSections = () => {
                   }
                 : undefined
             }
+            onKeyDown={
+              projectPath
+                ? e => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      navigate(projectPath);
+                    }
+                  }
+                : undefined
+            }
           >
-            {image && (
-              <>
-                {typeof image === "string" ? (
-                  <img
-                    className="row-span-4 col-span-2 h-full object-cover"
-                    src={image}
-                    alt={projectTitle ?? ""}
-                  />
-                ) : (
-                  <GatsbyImage
-                    image={image}
-                    alt={projectTitle ?? ""}
-                    className="row-span-4 col-span-2"
-                  />
-                )}
-              </>
-            )}
+            {image &&
+              (typeof image === "string" ? (
+                <img
+                  className="row-span-4 col-span-2 h-full object-cover"
+                  src={image}
+                  alt={projectTitle ?? ""}
+                />
+              ) : (
+                <GatsbyImage
+                  image={image}
+                  alt={projectTitle ?? ""}
+                  className="row-span-4 col-span-2"
+                />
+              ))}
             <p className="text-base sm:text-xl font-normal text-grey-3 pt-8 pb-1 sm:py-0 sm:pb-8">
               {projectRole}
             </p>
@@ -60,15 +68,16 @@ const HomePageSections = () => {
             </h3>
             <p className="text-base sm:text-xl font-normal text-grey-2 leading-6 sm:max-w-[400px]">
               <span>{projectDescription?.projectDescription}</span>
-              <span
-                className="text-[#0166CC] flex items-center mt-8 text-sm sm:text-xl"
+              <button
+                type="button"
+                className="text-[#0166CC] flex items-center mt-8 text-sm sm:text-xl bg-transparent border-none p-0 cursor-pointer"
                 onClick={() => navigate(projectPath)}
               >
                 Read More
                 <ArrowRight className="pl-2 w-6" />
-              </span>
+              </button>
             </p>
-          </section>
+          </div>
         );
       })}
     </article>

@@ -1,11 +1,11 @@
-import { HeadFC, PageProps, navigate } from "gatsby";
+import { type HeadFC, type PageProps, navigate } from "gatsby";
 
-import MainLayout from "components/MainLayout";
-import Padlock from "assets/padlock.svg";
 import ArrowCircleRight from "assets/arrow-circle-right.svg";
-import { FormEvent, useEffect, useState } from "react";
-import { setCookie } from "utils/setCookie";
+import Padlock from "assets/padlock.svg";
+import MainLayout from "components/MainLayout";
+import { type FormEvent, useEffect, useState } from "react";
 import { isPasswordSet } from "utils/isPasswordSet";
+import { setCookie } from "utils/setCookie";
 
 const PasswordPage = ({ location }: PageProps) => {
   const [value, setValue] = useState("");
@@ -19,7 +19,7 @@ const PasswordPage = ({ location }: PageProps) => {
       return;
     }
     navigate(from);
-  }, [passwordIsSet]);
+  }, [passwordIsSet, from]);
 
   useEffect(() => {
     if (!value) {

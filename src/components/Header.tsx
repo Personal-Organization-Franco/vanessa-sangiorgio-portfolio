@@ -7,12 +7,13 @@ const Header = () => {
 
   return (
     <header className="flex justify-between pb-4">
-      <div
-        className="text-2xl sm:text-[32px] font-medium text-grey-1 cursor-pointer"
+      <button
+        type="button"
+        className="text-2xl sm:text-[32px] font-medium text-grey-1 cursor-pointer bg-transparent border-none p-0"
         onClick={() => navigate("/")}
       >
         {logoText}
-      </div>
+      </button>
       <nav className="flex gap-8 items-center">
         {navbar.map(item => {
           return (

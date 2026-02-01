@@ -1,6 +1,6 @@
-import { describe, it, expect, afterEach } from "vitest";
-import { setCookie } from "../setCookie";
 import { clearAllCookies } from "test-utils/cookies";
+import { afterEach, describe, expect, it } from "vitest";
+import { setCookie } from "../setCookie";
 
 describe("setCookie", () => {
   afterEach(() => {

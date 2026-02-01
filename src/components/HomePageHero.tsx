@@ -16,6 +16,7 @@ const HomePageHero = () => {
             href={link?.href ?? ""}
             target="_blank"
             key={link?.name}
+            rel="noreferrer"
           >
             {link?.name ?? ""}
           </a>
