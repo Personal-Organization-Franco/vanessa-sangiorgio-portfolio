@@ -70,8 +70,11 @@ const HomePageSections = () => {
               <span>{projectDescription?.projectDescription}</span>
               <button
                 type="button"
-                className="text-[#0166CC] flex items-center mt-8 text-sm sm:text-xl bg-transparent border-none p-0 cursor-pointer"
-                onClick={() => navigate(projectPath)}
+                className="text-[#0166CC] flex items-center mt-8 text-sm sm:text-xl bg-transparent border-none p-0 cursor-pointer font-[inherit]"
+                onClick={e => {
+                  e.stopPropagation();
+                  navigate(projectPath);
+                }}
               >
                 Read More
                 <ArrowRight className="pl-2 w-6" />
