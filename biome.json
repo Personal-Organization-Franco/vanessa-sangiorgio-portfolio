@@ -50,7 +50,9 @@
     "rules": {
       "recommended": true,
       "a11y": {
-        "useSemanticElements": "off"
+        "useSemanticElements": "off",
+        "useKeyWithClickEvents": "off",
+        "noNoninteractiveElementToInteractiveRole": "off"
       },
       "correctness": {
         "noUnusedImports": "warn",

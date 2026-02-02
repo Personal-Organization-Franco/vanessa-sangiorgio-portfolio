@@ -70,7 +70,7 @@ describe("HomePageSections", () => {
     render(<HomePageSections />);
 
     const nearUTitle = screen.getByText("Near-U");
-    const section = nearUTitle.closest('[role="button"]');
+    const section = nearUTitle.closest("section");
     await user.click(section!);
 
     expect(navigate).toHaveBeenCalledWith("/case-studies/near-u");

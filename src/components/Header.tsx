@@ -7,13 +7,19 @@ const Header = () => {
 
   return (
     <header className="flex justify-between pb-4">
-      <button
-        type="button"
-        className="text-2xl sm:text-[32px] font-medium text-grey-1 cursor-pointer bg-transparent border-none p-0 font-[inherit] text-left"
+      <div
+        className="text-2xl sm:text-[32px] font-medium text-grey-1 cursor-pointer"
+        role="button"
+        tabIndex={0}
         onClick={() => navigate("/")}
+        onKeyDown={e => {
+          if (e.key === "Enter" || e.key === " ") {
+            navigate("/");
+          }
+        }}
       >
         {logoText}
-      </button>
+      </div>
       <nav className="flex gap-8 items-center">
         {navbar.map(item => {
           return (
