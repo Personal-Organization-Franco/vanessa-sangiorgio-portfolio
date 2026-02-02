@@ -1,3 +1,5 @@
+import { AUTH_COOKIE_NAME } from "constants/auth";
+
 export function isPasswordSet() {
   if (typeof document !== "undefined") {
     const cookies = Object.fromEntries(
@@ -6,7 +8,7 @@ export function isPasswordSet() {
         .map(v => v.split(/=(.*)/s).map(decodeURIComponent)),
     );
 
-    if ("passwordSet" in cookies) {
+    if (AUTH_COOKIE_NAME in cookies) {
       return true;
     }
   }

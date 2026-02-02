@@ -2,13 +2,16 @@ import { render } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import SEO from "../SEO";
 
+// Mock data for site metadata
+const mockSiteMetadata = {
+  title: "Vanessa Sangiorgio",
+  description: "Product Designer Portfolio",
+  siteUrl: "https://vanessasangiorgio.com",
+};
+
 // Mock the useSiteMetadata hook
 vi.mock("hooks/useSiteMetaData", () => ({
-  useSiteMetadata: vi.fn(() => ({
-    title: "Vanessa Sangiorgio",
-    description: "Product Designer Portfolio",
-    siteUrl: "https://vanessasangiorgio.com",
-  })),
+  useSiteMetadata: vi.fn(() => mockSiteMetadata),
 }));
 
 describe("SEO", () => {
@@ -16,20 +19,21 @@ describe("SEO", () => {
     render(<SEO />);
 
     expect(document.querySelector("title")?.textContent).toBe(
-      "Vanessa Sangiorgio",
+      mockSiteMetadata.title,
     );
     expect(
       document
         .querySelector('meta[name="description"]')
         ?.getAttribute("content"),
-    ).toBe("Product Designer Portfolio");
+    ).toBe(mockSiteMetadata.description);
   });
 
   it("renders custom title appended to site name", () => {
-    render(<SEO title="Work Page" />);
+    const customTitle = "Work Page";
+    render(<SEO title={customTitle} />);
 
     expect(document.querySelector("title")?.textContent).toBe(
-      "Vanessa Sangiorgio - Work Page",
+      `${mockSiteMetadata.title} - ${customTitle}`,
     );
   });
 

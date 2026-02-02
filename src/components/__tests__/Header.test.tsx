@@ -4,15 +4,18 @@ import { navigate } from "gatsby";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import Header from "../Header";
 
+// Mock data for the header
+const mockHeaderData = {
+  logoText: "Vanessa Sangiorgio",
+  navbar: [
+    { name: "Work", to: "/" },
+    { name: "About", to: "/about" },
+  ],
+};
+
 // Mock the useHeaderData hook
 vi.mock("hooks/useHeaderData", () => ({
-  useHeaderData: vi.fn(() => ({
-    logoText: "Vanessa Sangiorgio",
-    navbar: [
-      { name: "Work", to: "/" },
-      { name: "About", to: "/about" },
-    ],
-  })),
+  useHeaderData: vi.fn(() => mockHeaderData),
 }));
 
 describe("Header", () => {
@@ -23,20 +26,20 @@ describe("Header", () => {
   it("renders logo and navigation links with correct destinations", () => {
     render(<Header />);
 
-    expect(screen.getByText("Vanessa Sangiorgio")).toBeInTheDocument();
+    expect(screen.getByText(mockHeaderData.logoText)).toBeInTheDocument();
 
-    const workLink = screen.getByRole("link", { name: "Work" });
-    const aboutLink = screen.getByRole("link", { name: "About" });
-
-    expect(workLink).toHaveAttribute("href", "/");
-    expect(aboutLink).toHaveAttribute("href", "/about");
+    // Verify each nav link from mock data is rendered with correct destination
+    for (const navItem of mockHeaderData.navbar) {
+      const link = screen.getByRole("link", { name: navItem.name });
+      expect(link).toHaveAttribute("href", navItem.to);
+    }
   });
 
   it("clicking logo navigates to home page", async () => {
     const user = userEvent.setup();
     render(<Header />);
 
-    await user.click(screen.getByText("Vanessa Sangiorgio"));
+    await user.click(screen.getByText(mockHeaderData.logoText));
 
     expect(navigate).toHaveBeenCalledWith("/");
   });
