@@ -1,5 +1,5 @@
-import { graphql, useStaticQuery } from "gatsby";
 import slugify from "@sindresorhus/slugify";
+import { graphql, useStaticQuery } from "gatsby";
 
 export const useHomePageSections = () => {
   const data = useStaticQuery<Queries.AllHomePageSectionsQuery>(graphql`

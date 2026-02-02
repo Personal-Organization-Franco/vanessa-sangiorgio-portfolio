@@ -1,7 +1,7 @@
-import { HeadFC, PageProps, graphql, navigate } from "gatsby";
+import { BLOCKS } from "@contentful/rich-text-types";
+import { type HeadFC, type PageProps, graphql, navigate } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
-import { BLOCKS } from "@contentful/rich-text-types";
 import ReactMarkdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
@@ -123,7 +123,7 @@ const SectionPage = ({
         </div>
         {overviewPics.map((pic, index) => {
           return (
-            <div key={index}>
+            <div key={`overview-pic-${index}-${pic?.width ?? 0}`}>
               {pic && (
                 <GatsbyImage
                   image={pic}

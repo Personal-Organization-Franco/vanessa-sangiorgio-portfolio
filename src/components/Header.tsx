@@ -9,7 +9,14 @@ const Header = () => {
     <header className="flex justify-between pb-4">
       <div
         className="text-2xl sm:text-[32px] font-medium text-grey-1 cursor-pointer"
+        role="button"
+        tabIndex={0}
         onClick={() => navigate("/")}
+        onKeyDown={e => {
+          if (e.key === "Enter" || e.key === " ") {
+            navigate("/");
+          }
+        }}
       >
         {logoText}
       </div>

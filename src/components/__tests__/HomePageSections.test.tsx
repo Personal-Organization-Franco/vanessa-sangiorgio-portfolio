@@ -1,8 +1,8 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import HomePageSections from "../HomePageSections";
 import { navigate } from "gatsby";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import HomePageSections from "../HomePageSections";
 
 const mockSections = [
   {
@@ -55,13 +55,13 @@ describe("HomePageSections", () => {
     expect(screen.getByText("Near-U")).toBeInTheDocument();
     expect(screen.getByText("Product Designer")).toBeInTheDocument();
     expect(
-      screen.getByText("A dating app focused on meaningful connections.")
+      screen.getByText("A dating app focused on meaningful connections."),
     ).toBeInTheDocument();
 
     expect(screen.getByText("GWR Rewards")).toBeInTheDocument();
     expect(screen.getByText("UX Designer")).toBeInTheDocument();
     expect(
-      screen.getByText("A rewards program for train passengers.")
+      screen.getByText("A rewards program for train passengers."),
     ).toBeInTheDocument();
   });
 
