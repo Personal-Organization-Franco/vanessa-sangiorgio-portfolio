@@ -9,7 +9,7 @@ const Header = () => {
     <header className="flex justify-between pb-4">
       <button
         type="button"
-        className="text-2xl sm:text-[32px] font-medium text-grey-1 cursor-pointer bg-transparent border-none p-0 font-[inherit]"
+        className="text-2xl sm:text-[32px] font-medium text-grey-1 cursor-pointer bg-transparent border-none p-0 font-[inherit] text-left"
         onClick={() => navigate("/")}
       >
         {logoText}
