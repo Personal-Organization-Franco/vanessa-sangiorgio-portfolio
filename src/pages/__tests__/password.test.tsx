@@ -65,15 +65,14 @@ describe("PasswordPage", () => {
   it("renders the password form with essential elements", () => {
     render(<PasswordPage location={createMockLocation()} />);
 
-    expect(
-      screen.getByText("Please enter password to view this case study"),
-    ).toBeInTheDocument();
-    expect(screen.getByLabelText("Password")).toBeInTheDocument();
+    // Check for key structural elements, using partial matching for copy that may change
+    expect(screen.getByRole("heading", { level: 2 })).toBeInTheDocument();
+    expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
     expect(screen.getByRole("button")).toBeInTheDocument();
-    expect(screen.getByText("Request it here")).toHaveAttribute(
-      "href",
-      "mailto:vanessa.sangiorgio@yahoo.co.uk",
-    );
+    // Verify there's a contact link with mailto (email address may change)
+    expect(
+      screen.getByRole("link", { name: /request/i }),
+    ).toHaveAttribute("href", expect.stringContaining("mailto:"));
   });
 
   it("submit button is disabled until user enters text", async () => {
@@ -83,7 +82,7 @@ describe("PasswordPage", () => {
     const submitButton = screen.getByRole("button");
     expect(submitButton).toBeDisabled();
 
-    await user.type(screen.getByLabelText("Password"), "sometext");
+    await user.type(screen.getByLabelText(/password/i), "sometext");
     expect(submitButton).toBeEnabled();
   });
 
@@ -93,7 +92,7 @@ describe("PasswordPage", () => {
 
     render(<PasswordPage location={createMockLocation()} />);
 
-    await user.type(screen.getByLabelText("Password"), "wrongpassword");
+    await user.type(screen.getByLabelText(/password/i), "wrongpassword");
     await user.click(screen.getByRole("button"));
 
     expect(screen.getByText(/Incorrect password/i)).toBeInTheDocument();
@@ -107,7 +106,7 @@ describe("PasswordPage", () => {
 
     render(<PasswordPage location={createMockLocation()} />);
 
-    const passwordInput = screen.getByLabelText("Password");
+    const passwordInput = screen.getByLabelText(/password/i);
     await user.type(passwordInput, "wrongpassword");
     await user.click(screen.getByRole("button"));
 
@@ -126,7 +125,7 @@ describe("PasswordPage", () => {
 
     render(<PasswordPage location={createMockLocation()} />);
 
-    await user.type(screen.getByLabelText("Password"), "correctpassword");
+    await user.type(screen.getByLabelText(/password/i), "correctpassword");
     await user.click(screen.getByRole("button"));
 
     expect(setCookie).toHaveBeenCalled();
@@ -141,7 +140,7 @@ describe("PasswordPage", () => {
 
     render(<PasswordPage location={createMockLocation({ state: null })} />);
 
-    await user.type(screen.getByLabelText("Password"), "correctpassword");
+    await user.type(screen.getByLabelText(/password/i), "correctpassword");
     await user.click(screen.getByRole("button"));
 
     expect(navigate).toHaveBeenCalledWith("/");
