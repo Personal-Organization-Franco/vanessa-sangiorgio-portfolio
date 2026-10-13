@@ -26,7 +26,7 @@ const HomePageSections = () => {
         return (
           <section
             key={projectTitle}
-            className="flex flex-col sm:grid sm:grid-flow-col gap-x-9 cursor-pointer"
+            className="flex flex-col sm:grid sm:grid-cols-3 gap-x-9 cursor-pointer"
             role="button"
             tabIndex={0}
             onClick={
@@ -49,7 +49,7 @@ const HomePageSections = () => {
             {image &&
               (typeof image === "string" ? (
                 <img
-                  className="row-span-4 col-span-2 h-full object-cover"
+                  className="row-span-4 col-span-2 h-full w-full object-cover"
                   src={image}
                   alt={projectTitle ?? ""}
                 />
@@ -57,7 +57,7 @@ const HomePageSections = () => {
                 <GatsbyImage
                   image={image}
                   alt={projectTitle ?? ""}
-                  className="row-span-4 col-span-2"
+                  className="row-span-4 col-span-2 w-full"
                 />
               ))}
             <p className="text-base sm:text-xl font-normal text-grey-3 pt-8 pb-1 sm:py-0 sm:pb-8">
