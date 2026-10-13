@@ -1,19 +1,15 @@
 import { BLOCKS } from "@contentful/rich-text-types";
-import { type HeadFC, type PageProps, graphql, navigate } from "gatsby";
+import { type HeadFC, type PageProps, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import ReactMarkdown from "react-markdown";
 
 import MainLayout from "components/MainLayout";
 import SEO from "components/SEO";
-import { isPasswordSet } from "utils/isPasswordSet";
 
 const SectionPage = ({
   data,
-  params,
-  location,
 }: PageProps<Queries.CaseStudyQuery>) => {
-  const passwordIsSet = isPasswordSet();
   const { contentfulCaseStudy } = data;
 
   const heroImage = getImage(contentfulCaseStudy?.heroImage ?? null);
@@ -25,21 +21,22 @@ const SectionPage = ({
 
   const caseStudySection = contentfulCaseStudy?.caseStudySection;
 
-  const PROTECTED_PROJECTS = ["near-u", "gwr-rewards"];
-
-  if (!passwordIsSet) {
-    if (
-      PROTECTED_PROJECTS.includes(params?.name ?? "") &&
-      typeof window !== "undefined"
-    ) {
-      navigate("/password", {
-        state: {
-          from: location?.pathname,
-        },
-      });
-      return null;
-    }
-  }
+  // Temporarily disabled because Vanessa forgot the password for a presentation.
+  // Re-enable this guard when it is needed. Do not delete it.
+  // const PROTECTED_PROJECTS = ["near-u", "gwr-rewards"];
+  // if (!isPasswordSet()) {
+  //   if (
+  //     PROTECTED_PROJECTS.includes(params?.name ?? "") &&
+  //     typeof window !== "undefined"
+  //   ) {
+  //     navigate("/password", {
+  //       state: {
+  //         from: location?.pathname,
+  //       },
+  //     });
+  //     return null;
+  //   }
+  // }
   return (
     <MainLayout>
       <div className="mx-[-1rem] sm:mx-[-3rem]">
